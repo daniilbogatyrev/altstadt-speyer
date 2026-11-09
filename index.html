@@ -6,7 +6,9 @@
   <title>Altstadt Speyer — Apartment am Holzmarkt</title>
   <meta name="description" content="Apartment mit Terrasse in der Altstadt von Speyer. Holzmarkt 4. Buchung ausschließlich über Booking.com.">
   <meta name="theme-color" content="#F4F3EF">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <link rel="alternate" hreflang="de" href="?lang=de">
   <link rel="alternate" hreflang="en" href="?lang=en">
@@ -17,7 +19,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Altstadt Speyer — Apartment am Holzmarkt">
   <meta property="og:description" content="Apartment mit Terrasse in der Altstadt von Speyer. Buchung über Booking.com.">
-  <meta property="og:image" content="images/01.jpg">
+  <meta property="og:image" content="https://test.dbogatyrev.com/img/wohnen/01.webp">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,6 +124,13 @@
           <div class="fact reveal"><dt class="label">Check-out</dt><dd>10<span class="colon">:</span>00</dd></div>
         </dl>
       </div>
+
+      <div class="wrap">
+        <figure class="hero__img reveal" data-lb="hero" data-lb-src="img/wohnen/01.webp">
+          <img src="img/wohnen/01.webp" alt="" width="1024" height="768" fetchpriority="high">
+          <figcaption class="mono"><span>00</span> <span data-i18n="hero.cap">Wohnbereich mit historischem Backsteinbogen</span></figcaption>
+        </figure>
+      </div>
     </section>
 
     <!-- 01 APARTMENT -->
@@ -139,11 +148,17 @@
       </div>
 
       <div class="wrap gallery">
-        <figure class="ph ph--a reveal" data-n="01"><img src="images/01.jpg" alt="" loading="lazy"><figcaption class="mono"><span>01</span> <span data-i18n="g.1">Wohnbereich</span></figcaption></figure>
-        <figure class="ph ph--b reveal" data-n="02"><img src="images/02.jpg" alt="" loading="lazy"><figcaption class="mono"><span>02</span> <span data-i18n="g.2">Terrasse</span></figcaption></figure>
-        <figure class="ph ph--c reveal" data-n="03"><img src="images/03.jpg" alt="" loading="lazy"><figcaption class="mono"><span>03</span> <span data-i18n="g.3">Schlafzimmer</span></figcaption></figure>
-        <figure class="ph ph--d reveal" data-n="04"><img src="images/04.jpg" alt="" loading="lazy"><figcaption class="mono"><span>04</span> <span data-i18n="g.4">Küche</span></figcaption></figure>
-        <figure class="ph ph--e reveal" data-n="05"><img src="images/05.jpg" alt="" loading="lazy"><figcaption class="mono"><span>05</span> <span data-i18n="g.5">Bad</span></figcaption></figure>
+        <figure class="ph ph--a reveal" data-n="01" data-lb="curated" data-lb-src="img/schlafen/01.webp"><img src="img/schlafen/01.webp" alt="" loading="lazy"><figcaption class="mono"><span>01</span> <span data-i18n="g.1">Schlafzimmer</span></figcaption></figure>
+        <figure class="ph ph--b reveal" data-n="02" data-lb="curated" data-lb-src="img/hof/01.webp"><img src="img/hof/01.webp" alt="" loading="lazy"><figcaption class="mono"><span>02</span> <span data-i18n="g.2">Innenhof</span></figcaption></figure>
+        <figure class="ph ph--c reveal" data-n="03" data-lb="curated" data-lb-src="img/wohnen/05.webp"><img src="img/wohnen/05.webp" alt="" loading="lazy"><figcaption class="mono"><span>03</span> <span data-i18n="g.3">Küche</span></figcaption></figure>
+        <figure class="ph ph--d reveal" data-n="04" data-lb="curated" data-lb-src="img/bad/01.webp"><img src="img/bad/01.webp" alt="" loading="lazy"><figcaption class="mono"><span>04</span> <span data-i18n="g.4">Bad</span></figcaption></figure>
+        <figure class="ph ph--e reveal" data-n="05" data-lb="curated" data-lb-src="img/wohnen/03.webp"><img src="img/wohnen/03.webp" alt="" loading="lazy"><figcaption class="mono"><span>05</span> <span data-i18n="g.5">Wohnbereich</span></figcaption></figure>
+
+        <div class="album-head">
+          <h3 class="album-head__title"><span data-i18n="album.title">Alle Fotos</span> <span class="mono album-head__count" id="album-count">38</span></h3>
+          <div class="filters" role="tablist" id="filters"></div>
+        </div>
+        <ul class="album" id="album"></ul>
       </div>
     </section>
 
@@ -161,39 +176,45 @@
           <li class="reveal"><span class="mono">C</span><span data-i18n="a.3">Eigenes Badezimmer</span></li>
           <li class="reveal"><span class="mono">D</span><span data-i18n="a.4">Kostenfreies WLAN</span></li>
           <li class="reveal"><span class="mono">E</span><span data-i18n="a.5">Separates Schlafzimmer</span></li>
-          <li class="reveal"><span class="mono">F</span><span data-i18n="a.6">Lage in der Altstadt</span></li>        </ul>
+          <li class="reveal"><span class="mono">F</span><span data-i18n="a.6">Lage in der Altstadt</span></li>
+          <li class="reveal"><span class="mono">G</span><span data-i18n="a.7">Garage</span></li>
+          <li class="reveal"><span class="mono">H</span><span data-i18n="a.8">Self-Check-in per Schlüsselsafe</span></li>        </ul>
       </div>
     </section>
 
-    <!-- 03 LOCATION -->
-    <section class="section section--dark" id="location">
+    <!-- 03 COURTYARD -->
+    <section class="section" id="courtyard">
       <div class="wrap grid">
         <header class="section__head reveal">
           <span class="section__num">03</span>
+          <h2 class="label" data-i18n="h.label">Innenhof</h2>
+        </header>
+        <h3 class="section__title reveal" data-i18n="h.title">Ein verwunschener Hof mitten in der Stadt.</h3>
+        <div class="section__body reveal">
+          <p data-i18n="h.p1">Hinter dem Hoftor öffnet sich ein gepflasterter Innenhof mit Sandsteinbögen, Pflanzen und Sitzplätzen.</p>
+          <p data-i18n="h.p2">Abends tauchen Laternen und Lichterketten den Hof in warmes Licht – ein Ort zum Ankommen.</p>
+        </div>
+      </div>
+      <div class="wrap courtyard">
+        <figure class="ph courtyard__a reveal" data-n="H1" data-lb="court" data-lb-src="img/hof/05.webp"><img src="img/hof/05.webp" alt="" loading="lazy"><figcaption class="mono"><span>H1</span> <span data-i18n="h.cap1">Der Hof am Abend</span></figcaption></figure>
+        <figure class="ph courtyard__b reveal" data-n="H2" data-lb="court" data-lb-src="img/hof/02.webp"><img src="img/hof/02.webp" alt="" loading="lazy"><figcaption class="mono"><span>H2</span> <span data-i18n="h.cap2">Laternen und Sandstein</span></figcaption></figure>
+        <figure class="ph courtyard__c reveal" data-n="H3" data-lb="court" data-lb-src="img/hof/04.webp"><img src="img/hof/04.webp" alt="" loading="lazy"><figcaption class="mono"><span>H3</span> <span data-i18n="h.cap3">Eingang zum Apartment</span></figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 04 LOCATION -->
+    <section class="section section--dark" id="location">
+      <div class="wrap grid">
+        <header class="section__head reveal">
+          <span class="section__num">04</span>
           <h2 class="label" data-i18n="s3.label">Lage</h2>
         </header>
         <h3 class="section__title reveal" data-i18n="s3.title">Zweitausend Jahre Geschichte vor der Haustür.</h3>
 
-        <div class="map reveal" aria-hidden="true">
-          <svg viewBox="0 0 400 400" class="map__svg">
-            <g class="map__grid">
-              <path d="M0 50H400M0 100H400M0 150H400M0 200H400M0 250H400M0 300H400M0 350H400M50 0V400M100 0V400M150 0V400M200 0V400M250 0V400M300 0V400M350 0V400"/>
-            </g>
-            <path class="map__river" d="M330 0 C 360 120, 300 220, 350 400"/>
-            <path class="map__street" d="M40 210 L 280 190"/>
-            <circle class="map__ring" cx="190" cy="215" r="70"/>
-            <circle class="map__ring" cx="190" cy="215" r="140"/>
-            <rect class="map__home" x="180" y="205" width="20" height="20"/>
-            <circle class="map__poi" cx="275" cy="190" r="5"/>
-            <circle class="map__poi" cx="60" cy="208" r="5"/>
-            <circle class="map__poi" cx="300" cy="300" r="5"/>
-            <text x="206" y="240" class="map__t map__t--home">Holzmarkt 4</text>
-            <text x="250" y="178" class="map__t" data-i18n="m.dom">Dom</text>
-            <text x="40" y="196" class="map__t">Altpörtel</text>
-            <text x="312" y="304" class="map__t" data-i18n="m.museum">Museum</text>
-            <text x="352" y="40" class="map__t" data-i18n="m.rhine">Rhein</text>
-          </svg>
-        </div>
+        <figure class="aerial reveal" data-lb="aerial" data-lb-src="img/anreise/05.webp">
+          <img src="img/anreise/05.webp" alt="" loading="lazy" width="454" height="768">
+          <figcaption class="mono" data-i18n="d.cap">Kaiserdom und Apartment aus der Luft</figcaption>
+        </figure>
 
         <ol class="distances">
           <li class="reveal"><span data-i18n="d.1">Maximilianstraße</span><span class="mono">~ 3 min</span></li>
@@ -210,11 +231,51 @@
       </div>
     </section>
 
-    <!-- 04 HOUSE RULES -->
+    <!-- 05 ARRIVAL -->
+    <section class="section" id="arrival">
+      <div class="wrap grid">
+        <header class="section__head reveal">
+          <span class="section__num">05</span>
+          <h2 class="label" data-i18n="ar.label">Anreise</h2>
+        </header>
+        <h3 class="section__title reveal" data-i18n="ar.title">Ankommen in vier Schritten.</h3>
+        <p class="section__body reveal note" data-i18n="ar.intro">Self-Check-in ab 16:00 Uhr – unabhängig von festen Übergabezeiten.</p>
+      </div>
+      <div class="wrap">
+        <ol class="steps">
+          <li class="step reveal">
+            <figure class="ph step__img" data-n="1" data-lb="arrival" data-lb-src="img/anreise/01.webp"><img src="img/anreise/01.webp" alt="" loading="lazy"></figure>
+            <span class="step__num">01</span>
+            <h4 class="step__title" data-i18n="st.1.t">Anfahrt</h4>
+            <p class="step__text" data-i18n="st.1.p">Die Skizze zeigt den Weg vom Haus zu den Garagen.</p>
+          </li>
+          <li class="step reveal">
+            <figure class="ph step__img step__img--garage" data-n="2" data-lb="arrival" data-lb-src="img/anreise/02.webp"><img src="img/anreise/02.webp" alt="" loading="lazy"></figure>
+            <span class="step__num">02</span>
+            <h4 class="step__title" data-i18n="st.2.t">Garage Nr. 9 oder Nr. 10</h4>
+            <p class="step__text" data-i18n="st.2.p">Parken Sie in Garage Nr. 9 oder Nr. 10 – auf der linken Seite.</p>
+          </li>
+          <li class="step reveal">
+            <figure class="ph step__img" data-n="3" data-lb="arrival" data-lb-src="img/anreise/03.webp"><img src="img/anreise/03.webp" alt="" loading="lazy"></figure>
+            <span class="step__num">03</span>
+            <h4 class="step__title" data-i18n="st.3.t">Schlüsselsafe</h4>
+            <p class="step__text" data-i18n="st.3.p">Der Schlüssel wartet im Schlüsselsafe neben der Tür. Den Code erhalten Sie nach der Buchung.</p>
+          </li>
+          <li class="step reveal">
+            <figure class="ph step__img" data-n="4" data-lb="arrival" data-lb-src="img/anreise/04.webp"><img src="img/anreise/04.webp" alt="" loading="lazy"></figure>
+            <span class="step__num">04</span>
+            <h4 class="step__title" data-i18n="st.4.t">Willkommen</h4>
+            <p class="step__text" data-i18n="st.4.p">Im Apartment liegen Schlüssel und Ortsplan für Sie bereit.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 06 HOUSE RULES -->
     <section class="section" id="rules">
       <div class="wrap grid">
         <header class="section__head reveal">
-          <span class="section__num">04</span>
+          <span class="section__num">06</span>
           <h2 class="label" data-i18n="s4.label">Hausregeln</h2>
         </header>
         <h3 class="section__title reveal" data-i18n="s4.title">Klar geregelt.</h3>
@@ -231,7 +292,7 @@
     <section class="cta" id="book">
       <a class="cta__link js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener">
         <span class="wrap grid cta__inner">
-          <span class="cta__label label" data-i18n="cta.label">05 — Buchung</span>
+          <span class="cta__label label" data-i18n="cta.label">07 — Buchung</span>
           <span class="cta__title"><span data-i18n="cta.big">Jetzt auf Booking.com buchen</span> <span class="cta__arrow" aria-hidden="true">↗</span></span>
           <span class="cta__note" data-i18n="cta.bignote">Verfügbarkeit, Preise und Buchung ausschließlich auf Booking.com. Über diese Website sind keine Buchungen möglich.</span>
         </span>
@@ -246,7 +307,9 @@
       <nav class="footer__nav">
         <a href="#apartment" data-i18n="s1.label">Wohnung</a>
         <a href="#amenities" data-i18n="s2.label">Ausstattung</a>
+        <a href="#courtyard" data-i18n="h.label">Innenhof</a>
         <a href="#location" data-i18n="s3.label">Lage</a>
+        <a href="#arrival" data-i18n="ar.label">Anreise</a>
         <a href="#rules" data-i18n="s4.label">Hausregeln</a>
       </nav>
       <nav class="footer__legal">
@@ -257,6 +320,18 @@
     </div>
   </footer>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto" hidden>
+    <div class="lightbox__bar">
+      <span class="label lightbox__cat" id="lb-cat"></span>
+      <span class="mono lightbox__count" id="lb-count">01 / 01</span>
+      <button type="button" class="lightbox__close" id="lb-close" data-i18n-aria="lb.close" aria-label="Schließen">×</button>
+    </div>
+    <figure class="lightbox__stage"><img id="lb-img" alt=""></figure>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" id="lb-prev" data-i18n-aria="lb.prev" aria-label="Zurück">←</button>
+    <button type="button" class="lightbox__nav lightbox__nav--next" id="lb-next" data-i18n-aria="lb.next" aria-label="Weiter">→</button>
+  </div>
+
+  <script src="js/photos.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 </body>

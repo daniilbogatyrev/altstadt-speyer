@@ -5,6 +5,10 @@
   var BOOKING_BASE = "https://www.booking.com/hotel/de/altstadt-speyer.";
   var BOOKING_QUERY = "?group_adults=2&group_children=0&no_rooms=1";
   var STORE_KEY = "altstadt-speyer-lang";
+  var currentDict = null;
+  var renderAlbum = null;
+  function t(k) { return (currentDict && currentDict[k]) || k; }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
 
   function store(get, val) {
     try {
@@ -42,9 +46,17 @@
     var href = BOOKING_BASE + dict._booking + ".html" + BOOKING_QUERY;
     document.querySelectorAll(".js-book").forEach(function (a) { a.href = href; });
 
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var v = dict[el.getAttribute("data-i18n-aria")];
+      if (v != null) el.setAttribute("aria-label", v);
+    });
+
     document.querySelectorAll("[data-lang]").forEach(function (b) {
       b.setAttribute("aria-current", b.getAttribute("data-lang") === lang ? "true" : "false");
     });
+
+    currentDict = dict;
+    if (typeof renderAlbum === "function") renderAlbum();
   }
 
   function switchLang(lang) {
@@ -62,9 +74,125 @@
     }, 250);
   }
 
+
+  // ---------- album (all photos, filterable) ----------
+  var CATS = ["wohnen", "schlafen", "bad", "hof"];
+  var albumEl = document.getElementById("album");
+  var filtersEl = document.getElementById("filters");
+  var countEl = document.getElementById("album-count");
+  var activeCat = "all";
+  var ALL = [];
+  CATS.forEach(function (c) {
+    (window.PHOTOS[c] || []).forEach(function (p, i) { ALL.push({ cat: c, i: i + 1, src: p.src, thumb: p.thumb, w: p.w, h: p.h }); });
+  });
+
+  renderAlbum = function () {
+    if (!albumEl) return;
+    // filters
+    var cats = ["all"].concat(CATS);
+    filtersEl.innerHTML = cats.map(function (c) {
+      var n = c === "all" ? ALL.length : window.PHOTOS[c].length;
+      return '<button type="button" role="tab" data-cat="' + c + '" aria-selected="' + (c === activeCat) + '">' +
+        t("cat." + c) + ' <span class="mono">' + n + '</span></button>';
+    }).join("");
+    // tiles
+    var list = ALL.filter(function (p) { return activeCat === "all" || p.cat === activeCat; });
+    countEl.textContent = pad(list.length);
+    albumEl.innerHTML = list.map(function (p, idx) {
+      var shape = p.w / p.h > 1.6 ? "wide" : (p.h > p.w ? "tall" : "std");
+      var label = t("cat." + p.cat) + " — " + t("photo") + " " + p.i;
+      return '<li class="album__item album__item--' + shape + '">' +
+        '<button type="button" class="album__btn" data-lb="album" data-lb-src="' + p.src + '" data-lb-cat="' + t("cat." + p.cat) + '" aria-label="' + label + '">' +
+        '<img src="' + p.thumb + '" alt="' + label + '" loading="lazy" width="' + p.w + '" height="' + p.h + '">' +
+        '<span class="album__n mono">' + pad(idx + 1) + '/' + pad(list.length) + '</span>' +
+        '</button></li>';
+    }).join("");
+  };
+
+  if (filtersEl) filtersEl.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-cat]");
+    if (!b || b.getAttribute("data-cat") === activeCat) return;
+    activeCat = b.getAttribute("data-cat");
+    albumEl.classList.add("is-fading");
+    setTimeout(function () { renderAlbum(); albumEl.classList.remove("is-fading"); }, 200);
+  });
+
+  // ---------- lightbox ----------
+  var lb = document.getElementById("lightbox");
+  var lbImg = document.getElementById("lb-img");
+  var lbCount = document.getElementById("lb-count");
+  var lbCat = document.getElementById("lb-cat");
+  var group = [], pos = 0, lastFocus = null;
+
+  function captionOf(el) {
+    if (el.getAttribute("data-lb-cat")) return el.getAttribute("data-lb-cat");
+    var c = el.querySelector("figcaption [data-i18n], figcaption[data-i18n]") || el.closest(".step") && el.closest(".step").querySelector(".step__title");
+    return c ? c.textContent : "";
+  }
+  function show(i) {
+    pos = (i + group.length) % group.length;
+    var el = group[pos];
+    lbImg.src = el.getAttribute("data-lb-src");
+    lbImg.alt = captionOf(el);
+    lbCat.textContent = captionOf(el);
+    lbCount.textContent = pad(pos + 1) + " / " + pad(group.length);
+    [1, -1].forEach(function (d) { var n = group[(pos + d + group.length) % group.length]; if (n) { var im = new Image(); im.src = n.getAttribute("data-lb-src"); } });
+    lb.classList.toggle("is-single", group.length < 2);
+  }
+  function open(el) {
+    var g = el.getAttribute("data-lb");
+    group = Array.prototype.slice.call(document.querySelectorAll('[data-lb="' + g + '"]'));
+    lastFocus = document.activeElement;
+    lb.hidden = false;
+    document.documentElement.classList.add("lb-open");
+    requestAnimationFrame(function () { lb.classList.add("is-open"); });
+    show(group.indexOf(el));
+    document.getElementById("lb-close").focus();
+  }
+  function close() {
+    lb.classList.remove("is-open");
+    document.documentElement.classList.remove("lb-open");
+    setTimeout(function () { lb.hidden = true; lbImg.removeAttribute("src"); }, 250);
+    if (lastFocus) lastFocus.focus();
+  }
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-lb]");
+    if (el && !lb.contains(el)) { e.preventDefault(); open(el); }
+  });
+  document.querySelectorAll("figure[data-lb]").forEach(function (f) {
+    f.setAttribute("tabindex", "0"); f.setAttribute("role", "button");
+    f.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(f); } });
+  });
+  document.getElementById("lb-close").addEventListener("click", close);
+  document.getElementById("lb-prev").addEventListener("click", function () { show(pos - 1); });
+  document.getElementById("lb-next").addEventListener("click", function () { show(pos + 1); });
+  lb.addEventListener("click", function (e) { if (e.target === lb || e.target.classList.contains("lightbox__stage")) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (lb.hidden) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowRight") show(pos + 1);
+    else if (e.key === "ArrowLeft") show(pos - 1);
+    else if (e.key === "Tab") { // focus trap
+      var f = Array.prototype.slice.call(lb.querySelectorAll("button")).filter(function (b) { return b.offsetParent !== null; });
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  var tx = null;
+  lb.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 50) show(pos + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+  // test helper: #photo-N opens album photo N
+  var m = location.hash.match(/^#photo-(\d+)$/);
+  if (m) setTimeout(function () { var b = document.querySelectorAll('#album [data-lb]')[+m[1] - 1]; if (b) open(b); }, 300);
+
   // init language (no transition)
   apply(detectLang());
-  document.querySelectorAll("[data-lang]").forEach(function (b) {
+  document.querySelectorAll("button[data-lang]").forEach(function (b) {
     b.addEventListener("click", function () { switchLang(b.getAttribute("data-lang")); });
   });
 
