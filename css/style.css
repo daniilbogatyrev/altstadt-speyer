@@ -144,7 +144,7 @@ body.show-grid .grid-overlay { opacity: 1; }
 .header.is-scrolled { border-bottom-color: var(--rule); }
 .header__inner { height: var(--header-h); align-items: center; }
 .wordmark { grid-column: 1 / span 4; display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 700; font-size: 17px; letter-spacing: -0.03em; justify-self: start; }
-.wordmark__sq { display: inline-block; width: 14px; height: 14px; background: var(--red); flex: none; }
+.wordmark__coa { display: inline-block; width: 15px; height: 18px; flex: none; object-fit: contain; }
 .header__clock { grid-column: 6 / span 2; color: var(--ink-2); display: flex; gap: 8px; }
 .header__clock .tnum { color: var(--ink); }
 .lang { grid-column: 9 / span 2; display: flex; gap: 2px; justify-self: end; }
@@ -181,9 +181,9 @@ body.show-grid .grid-overlay { opacity: 1; }
 .dot { font-style: normal; color: var(--red); }
 
 .hero__motif { grid-column: 9 / span 4; grid-row: 2 / span 2; position: relative; z-index: 1; pointer-events: none; }
-.motif__sq { position: absolute; right: 0; top: 4%; width: clamp(80px, 13vw, 200px); aspect-ratio: 1; background: var(--red); animation: motifIn 1.2s var(--ease) .3s both; }
-.motif__circle { position: absolute; right: clamp(40px, 6.5vw, 100px); top: calc(4% + clamp(40px, 6.5vw, 100px)); width: clamp(80px, 13vw, 200px); aspect-ratio: 1; border: 1px solid var(--ink); border-radius: 50%; animation: motifIn 1.2s var(--ease) .5s both; }
-.motif__line { position: absolute; right: 0; top: 4%; width: 1px; height: 120%; background: var(--ink); transform-origin: top; animation: lineIn 1.4s var(--ease) .6s both; }
+.motif__coa { position: absolute; right: 0; top: 4%; width: clamp(80px, 13vw, 200px); height: auto; aspect-ratio: 5 / 6; object-fit: contain; animation: motifIn 1.2s var(--ease) .3s both; }
+.motif__circle { position: absolute; right: clamp(40px, 6.5vw, 100px); top: calc(4% + clamp(56px, 9vw, 140px)); width: clamp(80px, 13vw, 200px); aspect-ratio: 1; border: 1px solid var(--ink); border-radius: 50%; animation: motifIn 1.2s var(--ease) .5s both; }
+.motif__line { position: absolute; right: 0; top: calc(4% + clamp(96px, 15.6vw, 240px) + 16px); width: 1px; height: 120%; background: var(--ink); transform-origin: top; animation: lineIn 1.4s var(--ease) .6s both; }
 @keyframes motifIn { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes lineIn { from { transform: scaleY(0); } to { transform: none; } }
 

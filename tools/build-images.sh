@@ -43,3 +43,5 @@ magick /tmp/coa-512.png -resize 180x180 -background white -flatten apple-touch-i
 magick /tmp/coa-512.png -define icon:auto-resize=48,32,16 favicon.ico
 rm -f /tmp/coa-512.png
 echo "done: $(find img -name '*.webp' | wc -l) files, $(du -sh img | cut -f1)"
+# Coat of arms for logo/hero (replaces the former red squares)
+magick "$COA" -strip -resize 400x480 -quality 90 img/wappen.webp
