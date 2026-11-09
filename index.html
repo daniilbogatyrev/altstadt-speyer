@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Altstadt Speyer — Ferienapartment am Holzmarkt</title>
   <meta name="description" content="Ferienapartment mit Innenhof in der Altstadt von Speyer, Holzmarkt 4. Buchung ausschließlich über Booking.com.">
-  <meta name="theme-color" content="#0B0B0A">
+  <meta name="theme-color" content="#FFFFFF">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -18,12 +18,12 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Altstadt Speyer — Ferienapartment am Holzmarkt">
-  <meta property="og:description" content="Verborgen – und doch mitten in der Altstadt. Buchung über Booking.com.">
-  <meta property="og:image" content="https://test.dbogatyrev.com/img/hof/05.webp">
+  <meta property="og:description" content="Verborgen, doch mitten in Speyer. Buchung über Booking.com.">
+  <meta property="og:image" content="https://test.dbogatyrev.com/img/hof/01.webp">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
   <script type="application/ld+json">
@@ -33,7 +33,7 @@
     "name": "Altstadt Speyer",
     "description": "Ferienapartment mit Innenhof, Küche und eigenem Bad in der Altstadt von Speyer.",
     "address": { "@type": "PostalAddress", "streetAddress": "Holzmarkt 4", "postalCode": "67346", "addressLocality": "Speyer", "addressCountry": "DE" },
-    "image": "https://test.dbogatyrev.com/img/hof/05.webp",
+    "image": "https://test.dbogatyrev.com/img/hof/01.webp",
     "checkinTime": "16:00",
     "checkoutTime": "10:00",
     "numberOfRooms": 1,
@@ -52,22 +52,15 @@
 
   <header class="header" id="header">
     <div class="header__inner">
-      <nav class="nav nav--main" aria-label="Navigation">
+      <!-- Logo slot: replace the text with <img src="img/logo.svg" alt="Altstadt Speyer"> once the logo is available -->
+      <a class="brand" href="#top" aria-label="Altstadt Speyer">Altstadt Speyer</a>
+
+      <nav class="nav" aria-label="Navigation">
         <a href="#apartment" data-i18n="nav.apt">Wohnung</a>
         <a href="#room-hof" data-i18n="nav.court">Innenhof</a>
         <a href="#location" data-i18n="nav.loc">Lage</a>
         <a href="#arrival" data-i18n="nav.arr">Anreise</a>
       </nav>
-
-      <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="menu">
-        <span class="burger__lines" aria-hidden="true"></span>
-        <span class="burger__label" data-i18n="menu">Menü</span>
-      </button>
-
-      <!-- Logo slot: replace the text with <img src="img/logo.svg" alt="Altstadt Speyer"> once the logo is available -->
-      <a class="brand" href="#top" aria-label="Altstadt Speyer">
-        <span class="brand__word">Altstadt</span><span class="brand__word">Speyer</span>
-      </a>
 
       <div class="header__right">
         <nav class="lang" aria-label="Sprache / Language">
@@ -77,6 +70,9 @@
           <button type="button" data-lang="it">IT</button>
         </nav>
         <a class="btn btn--sm js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener"><span data-i18n="cta.short">Buchen</span></a>
+        <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="menu" data-i18n-aria="menu" aria-label="Menü">
+          <span class="burger__lines" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </header>
@@ -95,117 +91,79 @@
       <button type="button" data-lang="fr">FR</button>
       <button type="button" data-lang="it">IT</button>
     </nav>
-    <a class="btn js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener"><span data-i18n="cta.long">Auf Booking.com buchen</span></a>
   </div>
 
   <main id="main">
-    <!-- HERO -->
+    <!-- HERO: picture only -->
     <section class="hero" id="top">
-      <div class="hero__frame">
-        <img class="hero__img" src="img/hof/05.webp" alt="" fetchpriority="high">
-        <div class="hero__shade" aria-hidden="true"></div>
-        <div class="hero__content">
-          <p class="eyebrow hero__sub" data-i18n="hero.sub">Ferienapartment am Holzmarkt · Speyer</p>
-          <h1 class="hero__title" data-i18n="hero.tag">Verborgen – und doch mitten in der Altstadt.</h1>
-          <a class="btn btn--light js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener"><span data-i18n="cta.long">Auf Booking.com buchen</span></a>
-        </div>
-        <a class="hero__scroll eyebrow" href="#apartment"><span data-i18n="hero.scroll">Entdecken</span><span class="hero__scroll-line" aria-hidden="true"></span></a>
-      </div>
+      <img class="hero__img" src="img/hof/01.webp" alt="" fetchpriority="high" width="1024" height="768">
     </section>
 
-    <!-- INTRO -->
+    <!-- INTRO (Wilmina) -->
     <section class="intro" id="apartment">
-      <div class="wrap wrap--narrow">
-        <p class="eyebrow reveal" data-i18n="intro.label">Ferienapartment · Speyer</p>
-        <h2 class="display reveal" data-i18n="intro.title">Ein Ort zum Ankommen.</h2>
-        <span class="rule reveal" aria-hidden="true"></span>
-        <p class="lead reveal" data-i18n="intro.p">Hinter einem alten Hoftor, wenige Schritte vom Kaiserdom entfernt, liegt unser Apartment.</p>
-      </div>
       <div class="wrap">
-        <div class="facts reveal">
-          <div><span class="facts__v">2</span><span class="eyebrow" data-i18n="facts.guests">Gäste</span></div>
-          <div><span class="facts__v">1</span><span class="eyebrow" data-i18n="facts.bedroom">Schlafzimmer</span></div>
-          <div><span class="facts__v">16:00</span><span class="eyebrow">Check-in</span></div>
-          <div><span class="facts__v">10:00</span><span class="eyebrow">Check-out</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TILES -->
-    <section class="tiles-section">
-      <div class="wrap">
-        <ul class="tiles">
-          <li class="tile reveal">
-            <a href="#room-wohnen">
-              <span class="tile__img"><img src="img/wohnen/01-s.webp" alt="" loading="lazy"></span>
-              <span class="tile__title" data-i18n="cat.wohnen">Wohnen & Küche</span>
-              <span class="tile__more eyebrow"><span data-i18n="more">Mehr erfahren</span> →</span>
-            </a>
-          </li>
-          <li class="tile reveal">
-            <a href="#room-schlafen">
-              <span class="tile__img"><img src="img/schlafen/01-s.webp" alt="" loading="lazy"></span>
-              <span class="tile__title" data-i18n="cat.schlafen">Schlafzimmer</span>
-              <span class="tile__more eyebrow"><span data-i18n="more">Mehr erfahren</span> →</span>
-            </a>
-          </li>
-          <li class="tile reveal">
-            <a href="#room-hof">
-              <span class="tile__img"><img src="img/hof/01-s.webp" alt="" loading="lazy"></span>
-              <span class="tile__title" data-i18n="cat.hof">Innenhof</span>
-              <span class="tile__more eyebrow"><span data-i18n="more">Mehr erfahren</span> →</span>
-            </a>
-          </li>
+        <p class="intro__text reveal">
+          <span data-i18n="intro.l1">Verborgen, doch mitten in Speyer.</span><br>
+          <span data-i18n="intro.l1b">Hinter einem alten Hoftor, wenige Schritte vom Kaiserdom.</span>
+        </p>
+        <ul class="intro__imgs reveal">
+          <li><a href="#room-wohnen"><img src="img/wohnen/03-s.webp" alt="" loading="lazy"></a></li>
+          <li><a href="#room-schlafen"><img src="img/schlafen/01-s.webp" alt="" loading="lazy"></a></li>
+          <li><a href="#room-hof"><img src="img/hof/04-s.webp" alt="" loading="lazy"></a></li>
+        </ul>
+        <p class="intro__text reveal" data-i18n="intro.l2">Ein Ort zum Ankommen – mit historischem Backstein, einem verwunschenen Innenhof und allem, was zwei Gäste brauchen.</p>
+        <ul class="facts reveal">
+          <li><strong>2</strong> <span data-i18n="facts.guests">Gäste</span></li>
+          <li><strong>1</strong> <span data-i18n="facts.bedroom">Schlafzimmer</span></li>
+          <li><span>Check-in</span> <strong>16:00</strong></li>
+          <li><span>Check-out</span> <strong>10:00</strong></li>
         </ul>
       </div>
     </section>
 
-    <!-- ROOMS (alternating, sliders rendered from js/photos.js) -->
+    <!-- ROOMS (Wilmina image + text, alternating like Alpine) -->
     <section class="rooms">
       <article class="room wrap" id="room-wohnen">
-        <div class="room__text reveal">
-          <h2 class="heading" data-i18n="cat.wohnen">Wohnen & Küche</h2>
-          <span class="rule rule--left" aria-hidden="true"></span>
-          <p data-i18n="r1.p">Ein offener Wohn- und Küchenbereich unter historischem Backstein.</p>
-        </div>
         <div class="slider reveal" data-cat="wohnen"></div>
+        <div class="room__text reveal">
+          <h2 class="room__title" data-i18n="cat.wohnen">Wohnen & Küche</h2>
+          <p data-i18n="r1.p">Ein offener Wohn- und Küchenbereich unter historischem Backstein.</p>
+          <button type="button" class="link js-all" data-cat="wohnen" data-i18n="allphotos">Alle Fotos ansehen</button>
+        </div>
       </article>
 
       <article class="room room--flip wrap" id="room-schlafen">
-        <div class="room__text reveal">
-          <h2 class="heading" data-i18n="cat.schlafen">Schlafzimmer</h2>
-          <span class="rule rule--left" aria-hidden="true"></span>
-          <p data-i18n="r2.p">Das Schlafzimmer unter dem Rundbogen.</p>
-        </div>
         <div class="slider reveal" data-cat="schlafen"></div>
+        <div class="room__text reveal">
+          <h2 class="room__title" data-i18n="cat.schlafen">Schlafzimmer</h2>
+          <p data-i18n="r2.p">Das Schlafzimmer unter dem Rundbogen.</p>
+          <button type="button" class="link js-all" data-cat="schlafen" data-i18n="allphotos">Alle Fotos ansehen</button>
+        </div>
       </article>
 
       <article class="room wrap" id="room-bad">
-        <div class="room__text reveal">
-          <h2 class="heading" data-i18n="cat.bad">Bad</h2>
-          <span class="rule rule--left" aria-hidden="true"></span>
-          <p data-i18n="r3.p">Das Bad mit ebenerdiger Dusche.</p>
-        </div>
         <div class="slider reveal" data-cat="bad"></div>
+        <div class="room__text reveal">
+          <h2 class="room__title" data-i18n="cat.bad">Bad</h2>
+          <p data-i18n="r3.p">Das Bad mit ebenerdiger Dusche.</p>
+          <button type="button" class="link js-all" data-cat="bad" data-i18n="allphotos">Alle Fotos ansehen</button>
+        </div>
       </article>
 
       <article class="room room--flip wrap" id="room-hof">
-        <div class="room__text reveal">
-          <h2 class="heading" data-i18n="cat.hof">Innenhof</h2>
-          <span class="rule rule--left" aria-hidden="true"></span>
-          <p data-i18n="r4.p">Hinter dem Hoftor öffnet sich ein gepflasterter Innenhof.</p>
-        </div>
         <div class="slider reveal" data-cat="hof"></div>
+        <div class="room__text reveal">
+          <h2 class="room__title" data-i18n="cat.hof">Innenhof</h2>
+          <p data-i18n="r4.p">Hinter dem Hoftor öffnet sich ein gepflasterter Innenhof.</p>
+          <button type="button" class="link js-all" data-cat="hof" data-i18n="allphotos">Alle Fotos ansehen</button>
+        </div>
       </article>
     </section>
 
     <!-- AMENITIES -->
     <section class="section" id="amenities">
-      <div class="wrap">
-        <header class="section__head reveal">
-          <h2 class="heading" data-i18n="amen.title">Ausstattung</h2>
-          <span class="rule" aria-hidden="true"></span>
-        </header>
+      <div class="wrap wrap--narrow">
+        <h2 class="heading reveal" data-i18n="amen.title">Ausstattung</h2>
         <ul class="amenities reveal">
           <li data-i18n="a.1">Private Terrasse</li>
           <li data-i18n="a.2">Voll ausgestattete Küche</li>
@@ -220,18 +178,16 @@
     </section>
 
     <!-- LOCATION -->
-    <section class="section section--surface" id="location">
+    <section class="section section--rule" id="location">
       <div class="wrap location">
         <figure class="location__img reveal" data-lb="aerial" data-lb-src="img/anreise/05.webp">
           <img src="img/anreise/05.webp" alt="" loading="lazy" width="454" height="768">
-          <figcaption class="eyebrow" data-i18n="d.cap">Kaiserdom und Apartment aus der Luft</figcaption>
         </figure>
-        <div class="location__text">
-          <h2 class="heading reveal" data-i18n="nav.loc">Lage</h2>
-          <span class="rule rule--left reveal" aria-hidden="true"></span>
-          <p class="display display--sm reveal" data-i18n="loc.tag">Zweitausend Jahre Geschichte vor der Haustür.</p>
-          <p class="eyebrow location__addr reveal">Holzmarkt 4 · 67346 Speyer</p>
-          <ol class="distances reveal">
+        <div class="location__text reveal">
+          <h2 class="heading heading--left" data-i18n="nav.loc">Lage</h2>
+          <p class="location__lead" data-i18n="loc.tag">Zweitausend Jahre Geschichte vor der Haustür.</p>
+          <p class="muted">Holzmarkt 4 · 67346 Speyer</p>
+          <ol class="distances">
             <li><span data-i18n="d.1">Maximilianstraße</span><span>~ 3 min</span></li>
             <li><span data-i18n="d.2">Kaiserdom (UNESCO)</span><span>~ 6 min</span></li>
             <li><span data-i18n="d.3">Altpörtel</span><span>~ 6 min</span></li>
@@ -239,7 +195,7 @@
             <li><span data-i18n="d.5">Technik Museum Speyer</span><span>~ 15 min</span></li>
             <li><span data-i18n="d.6">Hockenheimring</span><span>~ 20 km</span></li>
           </ol>
-          <p class="location__note reveal">
+          <p class="location__note">
             <span class="muted" data-i18n="d.note">Ungefähre Gehzeiten.</span>
             <a class="link" href="https://www.openstreetmap.org/search?query=Holzmarkt%204%2C%2067346%20Speyer" target="_blank" rel="noopener"><span data-i18n="d.map">Karte öffnen</span> ↗</a>
           </p>
@@ -248,79 +204,69 @@
     </section>
 
     <!-- ARRIVAL -->
-    <section class="section" id="arrival">
+    <section class="section section--rule" id="arrival">
       <div class="wrap">
-        <header class="section__head reveal">
-          <h2 class="heading" data-i18n="nav.arr">Anreise</h2>
-          <span class="rule" aria-hidden="true"></span>
-          <p class="display display--sm" data-i18n="ar.tag">Ankommen in vier Schritten.</p>
-          <p class="muted" data-i18n="ar.intro">Self-Check-in ab 16:00 Uhr – unabhängig von festen Übergabezeiten.</p>
-        </header>
-        <ol class="steps">
-          <li class="step reveal">
-            <figure class="step__img" data-lb="arrival" data-lb-src="img/anreise/01.webp"><img src="img/anreise/01-s.webp" alt="" loading="lazy"></figure>
-            <span class="step__num">01</span>
-            <h3 class="step__title" data-i18n="st.1.t">Anfahrt</h3>
-            <p class="step__text" data-i18n="st.1.p">Die Skizze zeigt den Weg vom Haus zu den Garagen.</p>
+        <h2 class="heading reveal" data-i18n="nav.arr">Anreise</h2>
+        <p class="section__intro reveal">
+          <span data-i18n="ar.tag">Ankommen in vier Schritten.</span><br>
+          <span class="muted" data-i18n="ar.intro">Self-Check-in ab 16:00 Uhr – unabhängig von festen Übergabezeiten.</span>
+        </p>
+        <ol class="cards">
+          <li class="card reveal">
+            <figure class="card__img" data-lb="arrival" data-lb-src="img/anreise/01.webp"><img src="img/anreise/01-s.webp" alt="" loading="lazy"></figure>
+            <span class="card__num">01</span>
+            <h3 class="card__title" data-i18n="st.1.t">Anfahrt</h3>
+            <p class="card__text" data-i18n="st.1.p">Die Skizze zeigt den Weg vom Haus zu den Garagen.</p>
           </li>
-          <li class="step reveal">
-            <figure class="step__img step__img--garage" data-lb="arrival" data-lb-src="img/anreise/02.webp"><img src="img/anreise/02-s.webp" alt="" loading="lazy"></figure>
-            <span class="step__num">02</span>
-            <h3 class="step__title" data-i18n="st.2.t">Garage Nr. 9 oder Nr. 10</h3>
-            <p class="step__text" data-i18n="st.2.p">Parken Sie in Garage Nr. 9 oder Nr. 10 – auf der linken Seite.</p>
+          <li class="card reveal">
+            <figure class="card__img card__img--garage" data-lb="arrival" data-lb-src="img/anreise/02.webp"><img src="img/anreise/02-s.webp" alt="" loading="lazy"></figure>
+            <span class="card__num">02</span>
+            <h3 class="card__title" data-i18n="st.2.t">Garage Nr. 9 oder Nr. 10</h3>
+            <p class="card__text" data-i18n="st.2.p">Parken Sie in Garage Nr. 9 oder Nr. 10 – auf der linken Seite.</p>
           </li>
-          <li class="step reveal">
-            <figure class="step__img" data-lb="arrival" data-lb-src="img/anreise/03.webp"><img src="img/anreise/03-s.webp" alt="" loading="lazy"></figure>
-            <span class="step__num">03</span>
-            <h3 class="step__title" data-i18n="st.3.t">Schlüsselsafe</h3>
-            <p class="step__text" data-i18n="st.3.p">Der Schlüssel wartet im Schlüsselsafe neben der Tür.</p>
+          <li class="card reveal">
+            <figure class="card__img" data-lb="arrival" data-lb-src="img/anreise/03.webp"><img src="img/anreise/03-s.webp" alt="" loading="lazy"></figure>
+            <span class="card__num">03</span>
+            <h3 class="card__title" data-i18n="st.3.t">Schlüsselsafe</h3>
+            <p class="card__text" data-i18n="st.3.p">Der Schlüssel wartet im Schlüsselsafe neben der Tür.</p>
           </li>
-          <li class="step reveal">
-            <figure class="step__img" data-lb="arrival" data-lb-src="img/anreise/04.webp"><img src="img/anreise/04-s.webp" alt="" loading="lazy"></figure>
-            <span class="step__num">04</span>
-            <h3 class="step__title" data-i18n="st.4.t">Willkommen</h3>
-            <p class="step__text" data-i18n="st.4.p">Im Apartment liegen Schlüssel und Ortsplan für Sie bereit.</p>
+          <li class="card reveal">
+            <figure class="card__img" data-lb="arrival" data-lb-src="img/anreise/04.webp"><img src="img/anreise/04-s.webp" alt="" loading="lazy"></figure>
+            <span class="card__num">04</span>
+            <h3 class="card__title" data-i18n="st.4.t">Willkommen</h3>
+            <p class="card__text" data-i18n="st.4.p">Im Apartment liegen Schlüssel und Ortsplan für Sie bereit.</p>
           </li>
         </ol>
       </div>
     </section>
 
     <!-- RULES -->
-    <section class="section section--tight" id="rules">
+    <section class="section section--rule" id="rules">
       <div class="wrap wrap--narrow">
-        <header class="section__head reveal">
-          <h2 class="heading" data-i18n="rules.title">Hausregeln</h2>
-          <span class="rule" aria-hidden="true"></span>
-        </header>
+        <h2 class="heading reveal" data-i18n="rules.title">Hausregeln</h2>
         <dl class="rules reveal">
-          <div><dt class="eyebrow">Check-in</dt><dd data-i18n="r.in">ab 16:00 Uhr</dd></div>
-          <div><dt class="eyebrow">Check-out</dt><dd data-i18n="r.out">bis 10:00 Uhr</dd></div>
-          <div><dt class="eyebrow" data-i18n="r.guests.l">Belegung</dt><dd data-i18n="r.guests">max. 2 Personen</dd></div>
-          <div><dt class="eyebrow" data-i18n="r.party.l">Feiern</dt><dd data-i18n="r.party">Keine Junggesellenabschiede oder Partys</dd></div>
+          <div><dt>Check-in</dt><dd data-i18n="r.in">ab 16:00 Uhr</dd></div>
+          <div><dt>Check-out</dt><dd data-i18n="r.out">bis 10:00 Uhr</dd></div>
+          <div><dt data-i18n="r.guests.l">Belegung</dt><dd data-i18n="r.guests">max. 2 Personen</dd></div>
+          <div><dt data-i18n="r.party.l">Feiern</dt><dd data-i18n="r.party">Keine Junggesellenabschiede oder Partys</dd></div>
         </dl>
       </div>
     </section>
 
-    <!-- BOOKING BANNER -->
-    <section class="banner" id="book">
-      <div class="banner__frame">
-        <img class="banner__img" src="img/schlafen/01.webp" alt="" loading="lazy">
-        <div class="banner__shade" aria-hidden="true"></div>
-        <div class="banner__content reveal">
-          <p class="eyebrow">Altstadt Speyer</p>
-          <h2 class="display" data-i18n="book.tag">Ihr Aufenthalt in der Altstadt.</h2>
-          <a class="btn btn--light js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener"><span data-i18n="cta.long">Auf Booking.com buchen</span> <span aria-hidden="true">↗</span></a>
-          <p class="banner__note" data-i18n="book.note">Verfügbarkeit, Preise und Buchung ausschließlich auf Booking.com.</p>
-        </div>
+    <!-- BOOKING -->
+    <section class="book" id="book">
+      <div class="wrap wrap--narrow reveal">
+        <h2 class="heading" data-i18n="book.title">Buchung</h2>
+        <p class="book__lead" data-i18n="book.tag">Ihr Aufenthalt in der Altstadt.</p>
+        <a class="btn js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener"><span data-i18n="cta.long">Auf Booking.com buchen</span> <span aria-hidden="true">↗</span></a>
+        <p class="muted book__note" data-i18n="book.note">Verfügbarkeit, Preise und Buchung ausschließlich auf Booking.com.</p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="wrap footer__grid">
-      <div class="footer__brand">
-        <span class="brand brand--footer"><span class="brand__word">Altstadt</span><span class="brand__word">Speyer</span></span>
-      </div>
+      <div class="footer__brand"><span class="brand">Altstadt Speyer</span></div>
       <address class="footer__col">Holzmarkt 4<br>67346 Speyer<br><span data-i18n="f.country">Deutschland</span></address>
       <nav class="footer__col">
         <a href="#apartment" data-i18n="nav.apt">Wohnung</a>
@@ -339,7 +285,7 @@
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto" hidden>
     <div class="lightbox__bar">
-      <span class="eyebrow lightbox__cat" id="lb-cat"></span>
+      <span class="lightbox__cat" id="lb-cat"></span>
       <span class="lightbox__count" id="lb-count">01 / 01</span>
       <button type="button" class="lightbox__close" id="lb-close" data-i18n-aria="lb.close" aria-label="Schließen">×</button>
     </div>

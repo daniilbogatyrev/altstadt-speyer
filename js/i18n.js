@@ -43,7 +43,12 @@ window.I18N = {
     "book.tag": "Ihr Aufenthalt in der Altstadt.",
     "book.note": "Verfügbarkeit, Preise und Buchung ausschließlich auf Booking.com. Über diese Website sind keine Buchungen möglich.",
     "f.country": "Deutschland", "f.imprint": "Impressum", "f.privacy": "Datenschutz",
-    photo: "Foto", "lb.close": "Schließen", "lb.prev": "Zurück", "lb.next": "Weiter"
+    photo: "Foto", "lb.close": "Schließen", "lb.prev": "Zurück", "lb.next": "Weiter",
+    "intro.l1": "Verborgen, doch mitten in Speyer.",
+    "intro.l1b": "Hinter einem alten Hoftor, wenige Schritte vom Kaiserdom.",
+    "intro.l2": "Ein Ort zum Ankommen – mit historischem Backstein, einem verwunschenen Innenhof und allem, was zwei Gäste brauchen.",
+    "allphotos": "Alle Fotos ansehen",
+    "book.title": "Buchung"
   },
 
   en: {
@@ -89,7 +94,12 @@ window.I18N = {
     "book.tag": "Your stay in the old town.",
     "book.note": "Availability, prices and booking exclusively on Booking.com. No bookings can be made through this website.",
     "f.country": "Germany", "f.imprint": "Legal notice", "f.privacy": "Privacy",
-    photo: "Photo", "lb.close": "Close", "lb.prev": "Previous", "lb.next": "Next"
+    photo: "Photo", "lb.close": "Close", "lb.prev": "Previous", "lb.next": "Next",
+    "intro.l1": "Hidden, yet in the heart of Speyer.",
+    "intro.l1b": "Behind an old courtyard gate, a few steps from the Imperial Cathedral.",
+    "intro.l2": "A place to arrive – with historic brick, an enchanted courtyard and everything two guests need.",
+    "allphotos": "View all photos",
+    "book.title": "Booking"
   },
 
   fr: {
@@ -135,7 +145,12 @@ window.I18N = {
     "book.tag": "Votre séjour dans la vieille ville.",
     "book.note": "Disponibilités, prix et réservation uniquement sur Booking.com. Aucune réservation n’est possible via ce site.",
     "f.country": "Allemagne", "f.imprint": "Mentions légales", "f.privacy": "Confidentialité",
-    photo: "Photo", "lb.close": "Fermer", "lb.prev": "Précédente", "lb.next": "Suivante"
+    photo: "Photo", "lb.close": "Fermer", "lb.prev": "Précédente", "lb.next": "Suivante",
+    "intro.l1": "Caché, et pourtant au cœur de Spire.",
+    "intro.l1b": "Derrière un ancien portail, à quelques pas de la cathédrale impériale.",
+    "intro.l2": "Un lieu où arriver – briques historiques, une cour enchantée et tout ce dont deux personnes ont besoin.",
+    "allphotos": "Voir toutes les photos",
+    "book.title": "Réservation"
   },
 
   it: {
@@ -181,6 +196,11 @@ window.I18N = {
     "book.tag": "Il vostro soggiorno nel centro storico.",
     "book.note": "Disponibilità, prezzi e prenotazione esclusivamente su Booking.com. Non è possibile prenotare tramite questo sito.",
     "f.country": "Germania", "f.imprint": "Note legali", "f.privacy": "Privacy",
-    photo: "Foto", "lb.close": "Chiudi", "lb.prev": "Precedente", "lb.next": "Successiva"
+    photo: "Foto", "lb.close": "Chiudi", "lb.prev": "Precedente", "lb.next": "Successiva",
+    "intro.l1": "Nascosto, eppure nel cuore di Spira.",
+    "intro.l1b": "Dietro un antico portone, a pochi passi dal Duomo imperiale.",
+    "intro.l2": "Un luogo dove arrivare – mattoni storici, un cortile incantato e tutto ciò che serve a due ospiti.",
+    "allphotos": "Vedi tutte le foto",
+    "book.title": "Prenotazione"
   }
 };
