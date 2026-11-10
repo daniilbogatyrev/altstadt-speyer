@@ -61,7 +61,9 @@ window.I18N = {
     "sm.f2": "Preis für den gewählten Zeitraum",
     "sm.f3": "Sofortbuchung mit Online-Zahlung",
     "hero.eyebrow": "Ferienwohnung · Holzmarkt 4 · Speyer",
-    "hero.cta": "Verfügbarkeit prüfen"
+    "hero.cta": "Verfügbarkeit prüfen",
+    "theme.dark": "Dunkelmodus einschalten",
+    "theme.light": "Hellmodus einschalten"
   },
 
   en: {
@@ -125,7 +127,9 @@ window.I18N = {
     "sm.f2": "Price for the selected dates",
     "sm.f3": "Instant booking with online payment",
     "hero.eyebrow": "Holiday apartment · Holzmarkt 4 · Speyer",
-    "hero.cta": "Check availability"
+    "hero.cta": "Check availability",
+    "theme.dark": "Switch to dark mode",
+    "theme.light": "Switch to light mode"
   },
 
   fr: {
@@ -189,7 +193,9 @@ window.I18N = {
     "sm.f2": "Prix pour les dates choisies",
     "sm.f3": "Réservation immédiate avec paiement en ligne",
     "hero.eyebrow": "Appartement de vacances · Holzmarkt 4 · Spire",
-    "hero.cta": "Voir les disponibilités"
+    "hero.cta": "Voir les disponibilités",
+    "theme.dark": "Activer le mode sombre",
+    "theme.light": "Activer le mode clair"
   },
 
   it: {
@@ -253,6 +259,8 @@ window.I18N = {
     "sm.f2": "Prezzo per le date scelte",
     "sm.f3": "Prenotazione immediata con pagamento online",
     "hero.eyebrow": "Appartamento vacanze · Holzmarkt 4 · Spira",
-    "hero.cta": "Verifica la disponibilità"
+    "hero.cta": "Verifica la disponibilità",
+    "theme.dark": "Attiva la modalità scura",
+    "theme.light": "Attiva la modalità chiara"
   }
 };

@@ -62,6 +62,7 @@
     });
 
     sliders.forEach(function (s) { s.relabel(); });
+    syncThemeBtn();
     document.dispatchEvent(new CustomEvent("langchange", { detail: lang }));
   }
 
@@ -241,7 +242,41 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ---------- theme (light / dark) ---------- */
+  var THEME_KEY = "altstadt-theme";
+  var themeBtn = document.getElementById("theme");
+  function storedTheme() { try { var v = localStorage.getItem(THEME_KEY); return v === "light" || v === "dark" ? v : null; } catch (e) { return null; } }
+  function currentTheme() { return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
+  function syncThemeBtn() {
+    if (!themeBtn) return;
+    var dark = currentTheme() === "dark";
+    themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+    var label = t(dark ? "theme.light" : "theme.dark");
+    themeBtn.setAttribute("aria-label", label);
+    themeBtn.title = label;
+  }
+  function applyTheme(theme, animate) {
+    var root = document.documentElement;
+    if (animate && !reduceMotion) { root.classList.add("theme-anim"); setTimeout(function () { root.classList.remove("theme-anim"); }, 450); }
+    root.setAttribute("data-theme", theme);
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", theme === "dark" ? "#0E1524" : "#FFFFFF");
+    syncThemeBtn();
+    document.dispatchEvent(new CustomEvent("themechange", { detail: theme }));
+  }
+  if (themeBtn) themeBtn.addEventListener("click", function () {
+    var next = currentTheme() === "dark" ? "light" : "dark";
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    applyTheme(next, true);
+  });
+  if (window.matchMedia) {
+    var mq = matchMedia("(prefers-color-scheme: dark)");
+    var onSystem = function (e) { if (!storedTheme()) applyTheme(e.matches ? "dark" : "light", true); };
+    if (mq.addEventListener) mq.addEventListener("change", onSystem);
+  }
+
   /* ---------- init ---------- */
+  applyTheme(currentTheme(), false);
   apply(detectLang());
   $$("button[data-lang]").forEach(function (b) {
     b.addEventListener("click", function () { switchLang(b.getAttribute("data-lang")); });
