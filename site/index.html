@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FeWo Altstadt Speyer — Ferienwohnungen am Holzmarkt</title>
   <meta name="description" content="Zwei Ferienwohnungen mit Innenhof in der Altstadt von Speyer, Holzmarkt 4: Superior und Deluxe Apartment. 9,5 von 10 auf Booking.com. Direkt online buchen.">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#0E1524">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -21,7 +21,7 @@
   <meta property="og:description" content="Verborgen, doch mitten in Speyer. Direkt buchen.">
   <meta property="og:image" content="https://test.dbogatyrev.com/img/hof/01.webp">
 
-  <script>(function(){var t=null;try{t=localStorage.getItem("altstadt-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";document.documentElement.setAttribute("data-theme",t)})();</script>
+  <script>(function(){var t=null;try{t=localStorage.getItem("altstadt-theme")}catch(e){}if(t!=="light")t="dark";document.documentElement.setAttribute("data-theme",t)})();</script>
 <link rel="preload" href="fonts/instrument-sans-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/instrument-sans-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
@@ -235,7 +235,13 @@
             </ul>
           </div>
         </div>
-        <ul class="reviews__quotes" id="rv-quotes"></ul>
+        <div class="rcar reveal" id="rcar" role="region" aria-roledescription="carousel" aria-label="Gästebewertungen" data-i18n-aria="rv.region" hidden>
+          <button type="button" class="round rcar__nav rcar__nav--prev" id="rcar-prev" data-i18n-aria="lb.prev" aria-label="Zurück">‹</button>
+          <div class="rcar__stage" id="rcar-stage" aria-live="off"></div>
+          <button type="button" class="round rcar__nav rcar__nav--next" id="rcar-next" data-i18n-aria="lb.next" aria-label="Weiter">›</button>
+          <div class="rcar__dots" id="rcar-dots"></div>
+          <p class="rcar__demo muted" id="rcar-demo" data-i18n="rv.demo" hidden>Demo-Ansicht mit Platzhaltertexten – hier erscheinen später echte Gästebewertungen.</p>
+        </div>
         <p class="reviews__links reveal">
           <a class="link js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener"><span data-i18n="rv.booking">Alle Bewertungen auf Booking.com</span> ↗</a>
           <a class="link" id="rv-google" href="#" target="_blank" rel="noopener" hidden><span data-i18n="rv.google">Bewertungen auf Google</span> ↗</a>

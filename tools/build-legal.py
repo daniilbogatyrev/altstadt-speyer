@@ -13,6 +13,13 @@ op, sv = data["operator"], data["services"]
 months = data["retention_months_requests"]
 missing = []
 
+# guest reviews: the privacy text only mentions them once real items exist in site/js/reviews-config.js
+_cfg = root / "site/js/reviews-config.js"
+GUEST_REVIEWS = False
+if _cfg.exists():
+    _txt = re.sub(r"/\*.*?\*/", "", _cfg.read_text(encoding="utf-8"), flags=re.S)
+    GUEST_REVIEWS = bool(re.search(r"\btext\s*:", _txt))
+
 
 def e(s):
     return html.escape(str(s), quote=False)
@@ -131,6 +138,10 @@ def datenschutz_de():
         s.append(f'''<h2>{n}. Zahlung (Stripe)</h2>
 <p>Nach unserer Bestätigung zahlen Sie über einen Zahlungslink von Stripe (Stripe Payments Europe, Ltd., 1 Grand Canal Street Lower, Grand Canal Dock, Dublin, Irland). Ihre Zahlungsdaten geben Sie direkt bei Stripe ein; wir erhalten sie nicht, sondern nur die Information, ob die Zahlung erfolgt ist, sowie Ihre E-Mail-Adresse und den Betrag (Art. 6 Abs. 1 lit. b DSGVO). Stripe verarbeitet Daten teilweise in eigener Verantwortung, etwa zur Betrugsprävention und zur Erfüllung gesetzlicher Pflichten. Näheres: stripe.com/de/privacy. Daten können auch an Stripe, Inc. (USA) übermittelt werden, auf Grundlage des EU-US Data Privacy Framework bzw. von Standardvertragsklauseln.</p>''')
         n += 1
+    if GUEST_REVIEWS:
+        s.append(f'''<h2>{n}. Gästebewertungen</h2>
+<p>Wir zeigen auf dieser Website ausgewählte Auszüge aus öffentlichen Bewertungen unserer Gäste (z. B. von Booking.com oder Google), jeweils mit Vornamen bzw. Initial, Herkunftsland und Quellenangabe. Rechtsgrundlage ist unser berechtigtes Interesse an einer wahrheitsgemäßen Darstellung unseres Angebots (Art. 6 Abs. 1 lit. f DSGVO). Wenn Sie mit der Anzeige Ihrer Bewertung nicht einverstanden sind, schreiben Sie uns; wir entfernen sie dann unverzüglich.</p>''')
+        n += 1
     s.append(f'''<h2>{n}. Externe Links</h2>
 <p>Diese Website enthält Links zu Booking.com, Airbnb, OpenStreetMap und gegebenenfalls Google. Beim bloßen Besuch unserer Seite werden keine Daten an diese Anbieter übertragen. Erst wenn Sie einen Link anklicken, gelten die Datenschutzbestimmungen des jeweiligen Anbieters.</p>
 <h2>{n+1}. Ihre Rechte</h2>
@@ -178,6 +189,10 @@ def datenschutz_en():
         s.append(f'''<h2>{n}. Payment (Stripe)</h2>
 <p>After we confirm your request you pay through a payment link from Stripe (Stripe Payments Europe, Ltd., 1 Grand Canal Street Lower, Grand Canal Dock, Dublin, Ireland). You enter your payment details directly with Stripe; we do not receive them, only the information whether the payment was made, plus your email address and the amount (Art. 6(1)(b) GDPR). Stripe partly processes data under its own responsibility, for example for fraud prevention and legal obligations. More: stripe.com/privacy. Data may also be transferred to Stripe, Inc. (USA) on the basis of the EU-US Data Privacy Framework or standard contractual clauses.</p>''')
         n += 1
+    if GUEST_REVIEWS:
+        s.append(f'''<h2>{n}. Guest reviews</h2>
+<p>This website shows selected excerpts from public reviews by our guests (e.g. from Booking.com or Google), each with first name or initial, country of origin and source. The legal basis is our legitimate interest in presenting our offer truthfully (Art. 6(1)(f) GDPR). If you do not agree with your review being shown, write to us and we will remove it without delay.</p>''')
+        n += 1
     s.append(f'''<h2>{n}. External links</h2>
 <p>This website contains links to Booking.com, Airbnb, OpenStreetMap and possibly Google. Merely visiting our site does not transmit data to these providers. Only when you click a link do the privacy rules of the respective provider apply.</p>
 <h2>{n+1}. Your rights</h2>
@@ -191,9 +206,7 @@ def datenschutz_en():
 
 
 # ----------------------------------------------------------------------------------------------- pages
-THEME = ('<script>(function(){var t=null;try{t=localStorage.getItem("altstadt-theme")}catch(e){}'
-         'if(t!=="light"&&t!=="dark")t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";'
-         'document.documentElement.setAttribute("data-theme",t)})();</script>')
+THEME = '<script>(function(){var t=null;try{t=localStorage.getItem("altstadt-theme")}catch(e){}if(t!=="light")t="dark";document.documentElement.setAttribute("data-theme",t)})();</script>'
 
 
 def page(lang, name, title, body):
@@ -202,7 +215,7 @@ def page(lang, name, title, body):
     home = {"de": "← Zur Startseite", "en": "← Back to the homepage"}[lang]
     switch = {"de": 'English version', "en": 'Deutsche Fassung'}[lang]
     return f'''<!doctype html>
-<html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="{lang}" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — FeWo Altstadt Speyer</title>
 <link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 {THEME}

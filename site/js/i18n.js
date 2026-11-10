@@ -121,7 +121,9 @@ window.I18N = {
     "rv.sub": "Gesamtbewertung unserer Gäste",
     "rv.booking": "Alle Bewertungen auf Booking.com",
     "rv.google": "Bewertungen auf Google",
-    "bk.extra": "Zusatzgäste ({n})"
+    "bk.extra": "Zusatzgäste ({n})",
+    "rv.region": "Gästebewertungen",
+    "rv.demo": "Demo-Ansicht mit Platzhaltertexten – hier erscheinen später echte Gästebewertungen."
   },
 
   en: {
@@ -245,7 +247,9 @@ window.I18N = {
     "rv.sub": "Overall rating from our guests",
     "rv.booking": "All reviews on Booking.com",
     "rv.google": "Reviews on Google",
-    "bk.extra": "Extra guests ({n})"
+    "bk.extra": "Extra guests ({n})",
+    "rv.region": "Guest reviews",
+    "rv.demo": "Demo view with placeholder texts – real guest reviews will appear here later."
   },
 
   fr: {
@@ -369,7 +373,9 @@ window.I18N = {
     "rv.sub": "Note globale de nos voyageurs",
     "rv.booking": "Tous les avis sur Booking.com",
     "rv.google": "Avis sur Google",
-    "bk.extra": "Personnes supplémentaires ({n})"
+    "bk.extra": "Personnes supplémentaires ({n})",
+    "rv.region": "Avis des voyageurs",
+    "rv.demo": "Aperçu avec des textes provisoires – de vrais avis de voyageurs apparaîtront ici plus tard."
   },
 
   it: {
@@ -493,6 +499,8 @@ window.I18N = {
     "rv.sub": "Valutazione complessiva dei nostri ospiti",
     "rv.booking": "Tutte le recensioni su Booking.com",
     "rv.google": "Recensioni su Google",
-    "bk.extra": "Ospiti aggiuntivi ({n})"
+    "bk.extra": "Ospiti aggiuntivi ({n})",
+    "rv.region": "Recensioni degli ospiti",
+    "rv.demo": "Anteprima con testi segnaposto – qui appariranno in seguito vere recensioni degli ospiti."
   }
 };
