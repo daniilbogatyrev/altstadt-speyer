@@ -45,6 +45,10 @@
       var v = dict[el.getAttribute("data-i18n")];
       if (v != null) el.textContent = v;
     });
+    $$("[data-i18n-html]").forEach(function (el) {
+      var v = dict[el.getAttribute("data-i18n-html")];
+      if (v != null) el.innerHTML = v; // our own strings only
+    });
     $$("[data-i18n-aria]").forEach(function (el) {
       var v = dict[el.getAttribute("data-i18n-aria")];
       if (v != null) el.setAttribute("aria-label", v);
@@ -58,6 +62,7 @@
     });
 
     sliders.forEach(function (s) { s.relabel(); });
+    document.dispatchEvent(new CustomEvent("langchange", { detail: lang }));
   }
 
   function switchLang(lang) {

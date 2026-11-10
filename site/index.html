@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Altstadt Speyer — Ferienapartment am Holzmarkt</title>
-  <meta name="description" content="Ferienapartment mit Innenhof in der Altstadt von Speyer, Holzmarkt 4. Buchung ausschließlich über Booking.com.">
+  <title>FeWo Altstadt Speyer — Ferienwohnung am Holzmarkt</title>
+  <meta name="description" content="Ferienapartment mit Innenhof in der Altstadt von Speyer, Holzmarkt 4. Direkt online anfragen und buchen.">
   <meta name="theme-color" content="#FFFFFF">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
@@ -17,8 +17,8 @@
   <link rel="alternate" hreflang="x-default" href="./">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Altstadt Speyer — Ferienapartment am Holzmarkt">
-  <meta property="og:description" content="Verborgen, doch mitten in Speyer. Buchung über Booking.com.">
+  <meta property="og:title" content="FeWo Altstadt Speyer — Ferienwohnung am Holzmarkt">
+  <meta property="og:description" content="Verborgen, doch mitten in Speyer. Direkt buchen.">
   <meta property="og:image" content="https://test.dbogatyrev.com/img/hof/01.webp">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +30,7 @@
   {
     "@context": "https://schema.org",
     "@type": "VacationRental",
-    "name": "Altstadt Speyer",
+    "name": "FeWo Altstadt Speyer",
     "description": "Ferienapartment mit Innenhof, Küche und eigenem Bad in der Altstadt von Speyer.",
     "address": { "@type": "PostalAddress", "streetAddress": "Holzmarkt 4", "postalCode": "67346", "addressLocality": "Speyer", "addressCountry": "DE" },
     "image": "https://test.dbogatyrev.com/img/hof/01.webp",
@@ -52,8 +52,7 @@
 
   <header class="header" id="header">
     <div class="header__inner">
-      <!-- Logo slot: replace the text with <img src="img/logo.svg" alt="Altstadt Speyer"> once the logo is available -->
-      <a class="brand" href="#top" aria-label="Altstadt Speyer">Altstadt Speyer</a>
+      <a class="brand" href="#top" aria-label="FeWo Altstadt Speyer"><img src="img/logo-dark.png" alt="FeWo Altstadt Speyer – Ferienwohnung" width="421" height="227"></a>
 
       <nav class="nav" aria-label="Navigation">
         <a href="#apartment" data-i18n="nav.apt">Wohnung</a>
@@ -69,7 +68,7 @@
           <button type="button" data-lang="fr">FR</button>
           <button type="button" data-lang="it">IT</button>
         </nav>
-        <a class="btn btn--sm js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener"><span data-i18n="cta.short">Buchen</span></a>
+        <a class="btn btn--sm" href="#book"><span data-i18n="cta.short">Buchen</span></a>
         <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="menu" data-i18n-aria="menu" aria-label="Menü">
           <span class="burger__lines" aria-hidden="true"></span>
         </button>
@@ -253,20 +252,63 @@
       </div>
     </section>
 
-    <!-- BOOKING -->
+    <!-- BOOKING: availability calendar + request form (js/booking.js, API in worker/) -->
     <section class="book" id="book">
-      <div class="wrap wrap--narrow reveal">
-        <h2 class="heading" data-i18n="book.title">Buchung</h2>
-        <p class="book__lead" data-i18n="book.tag">Ihr Aufenthalt in der Altstadt.</p>
-        <a class="btn js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener"><span data-i18n="cta.long">Auf Booking.com buchen</span> <span aria-hidden="true">↗</span></a>
-        <p class="muted book__note" data-i18n="book.note">Verfügbarkeit, Preise und Buchung ausschließlich auf Booking.com.</p>
+      <div class="wrap">
+        <h2 class="heading reveal" data-i18n="bk.title">Verfügbarkeit &amp; Buchung</h2>
+        <ol class="book__steps reveal">
+          <li><span>1</span><span data-i18n="bk.s1">Zeitraum wählen und Anfrage senden</span></li>
+          <li><span>2</span><span data-i18n="bk.s2">Wir bestätigen in der Regel innerhalb von 24 Stunden</span></li>
+          <li><span>3</span><span data-i18n="bk.s3">Sicher online bezahlen – Ihre Buchung ist fix</span></li>
+        </ol>
+
+        <div class="book__grid reveal" id="bk">
+          <div class="cal" id="cal">
+            <div class="cal__bar">
+              <button type="button" class="round cal__nav" id="cal-prev" data-i18n-aria="lb.prev" aria-label="Zurück">‹</button>
+              <button type="button" class="round cal__nav" id="cal-next" data-i18n-aria="lb.next" aria-label="Weiter">›</button>
+            </div>
+            <div class="cal__months" id="cal-months"></div>
+            <p class="cal__legend muted"><span class="cal__key cal__key--free"></span><span data-i18n="bk.free">frei</span><span class="cal__key cal__key--busy"></span><span data-i18n="bk.busy">belegt</span><span class="cal__key cal__key--sel"></span><span data-i18n="bk.chosen">Ihre Auswahl</span></p>
+            <p class="cal__hint" id="cal-hint" role="status"></p>
+          </div>
+
+          <form class="bform" id="bform" novalidate>
+            <div class="bform__dates">
+              <div><span class="bform__label" data-i18n="bk.checkin">Anreise</span><strong id="bk-in">–</strong></div>
+              <div><span class="bform__label" data-i18n="bk.checkout">Abreise</span><strong id="bk-out">–</strong></div>
+              <button type="button" class="link bform__reset" id="bk-reset" data-i18n="bk.reset" hidden>Zurücksetzen</button>
+            </div>
+            <div class="bform__price" id="bk-price"></div>
+
+            <label class="field"><span data-i18n="bk.guests">Gäste</span><select name="guests" id="bk-guests"><option>1</option><option selected>2</option></select></label>
+            <label class="field"><span data-i18n="bk.name">Vor- und Nachname</span><input name="name" autocomplete="name" required maxlength="120"></label>
+            <label class="field"><span data-i18n="bk.email">E-Mail</span><input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+            <label class="field"><span data-i18n="bk.phone">Telefon (optional)</span><input name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
+            <label class="field"><span data-i18n="bk.message">Nachricht (optional)</span><textarea name="message" rows="3" maxlength="2000"></textarea></label>
+            <label class="field field--hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+            <label class="check"><input type="checkbox" name="consent" required><span data-i18n-html="bk.consent">Ich akzeptiere die <a href="agb.html" target="_blank">AGB und Stornobedingungen</a> und habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen.</span></label>
+            <div id="bk-turnstile"></div>
+            <p class="bform__error" id="bk-error" role="alert" hidden></p>
+            <button type="submit" class="btn bform__submit" id="bk-submit"><span data-i18n="bk.submit">Unverbindlich anfragen</span></button>
+            <p class="muted bform__note" data-i18n="bk.note">Noch keine Zahlung. Sie bezahlen erst nach unserer Bestätigung.</p>
+          </form>
+
+          <div class="bdone" id="bk-done" hidden tabindex="-1">
+            <h3 data-i18n="bk.ok.title">Vielen Dank – Ihre Anfrage ist eingegangen.</h3>
+            <p data-i18n="bk.ok.text">Wir haben Ihnen eine Eingangsbestätigung per E-Mail geschickt und melden uns in der Regel innerhalb von 24 Stunden.</p>
+            <p class="muted" id="bk-done-id"></p>
+          </div>
+        </div>
+
+        <p class="book__alt muted reveal"><span data-i18n="bk.also">Auch buchbar über</span> <a class="link js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener">Booking.com ↗</a></p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="wrap footer__grid">
-      <div class="footer__brand"><span class="brand">Altstadt Speyer</span></div>
+      <div class="footer__brand"><img src="img/logo-dark.png" alt="FeWo Altstadt Speyer" width="421" height="227" loading="lazy"></div>
       <address class="footer__col">Holzmarkt 4<br>67346 Speyer<br><span data-i18n="f.country">Deutschland</span></address>
       <nav class="footer__col">
         <a href="#apartment" data-i18n="nav.apt">Wohnung</a>
@@ -276,11 +318,12 @@
       </nav>
       <nav class="footer__col">
         <a class="js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener">Booking.com ↗</a>
+        <a href="agb.html" data-i18n="f.terms">AGB &amp; Storno</a>
         <a href="impressum.html" data-i18n="f.imprint">Impressum</a>
         <a href="datenschutz.html" data-i18n="f.privacy">Datenschutz</a>
       </nav>
     </div>
-    <div class="wrap footer__copy">© <span id="year">2026</span> Altstadt Speyer</div>
+    <div class="wrap footer__copy">© <span id="year">2026</span> FeWo Altstadt Speyer</div>
   </footer>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto" hidden>
@@ -297,5 +340,6 @@
   <script src="js/photos.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
 </body>
 </html>

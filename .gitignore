@@ -1,2 +1,6 @@
 images/
 favicon/
+logo/
+node_modules/
+.wrangler/
+.dev.vars

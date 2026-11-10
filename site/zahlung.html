@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zahlung — FeWo Altstadt Speyer</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head>
+<body><main class="page"><div class="wrap wrap--narrow">
+<a href="index.html"><img class="page__logo" src="img/logo-dark.png" alt="FeWo Altstadt Speyer" width="421" height="227"></a>
+<h1 id="pay-title">Vielen Dank.</h1>
+<p id="pay-text"></p>
+<a class="btn" href="index.html" id="pay-back">Zur Startseite</a>
+</div></main>
+<script src="js/i18n.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var lang = ["de", "en", "fr", "it"].indexOf(q.get("lang")) > -1 ? q.get("lang") : "de";
+  var kind = q.get("status") === "ok" ? "ok" : "cancel";
+  var d = window.I18N[lang];
+  document.documentElement.lang = lang;
+  document.getElementById("pay-title").textContent = d["pay." + kind + ".title"];
+  document.getElementById("pay-text").textContent = d["pay." + kind + ".text"];
+  var back = document.getElementById("pay-back");
+  back.textContent = d["pay.back"];
+  back.href = "index.html?lang=" + lang;
+})();
+</script>
+</body></html>
