@@ -258,7 +258,6 @@
   /* ---------- theme (light / dark) ---------- */
   var THEME_KEY = "altstadt-theme";
   var themeBtn = document.getElementById("theme");
-  function storedTheme() { try { var v = localStorage.getItem(THEME_KEY); return v === "light" || v === "dark" ? v : null; } catch (e) { return null; } }
   function currentTheme() { return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
   function syncThemeBtn() {
     if (!themeBtn) return;
@@ -282,26 +281,85 @@
     try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
     applyTheme(next, true);
   });
-  if (window.matchMedia) {
-    var mq = matchMedia("(prefers-color-scheme: dark)");
-    var onSystem = function (e) { if (!storedTheme()) applyTheme(e.matches ? "dark" : "light", true); };
-    if (mq.addEventListener) mq.addEventListener("change", onSystem);
-  }
-
-  /* ---------- reviews (google link, quotes) + apartment preselection ---------- */
+  /* ---------- reviews: google link + slideshow of hand-picked guest reviews ---------- */
   (function () {
     var r = window.REVIEWS || {};
     var g = document.getElementById("rv-google");
     if (g && r.googleUrl) { g.href = r.googleUrl; g.hidden = false; }
-    var q = document.getElementById("rv-quotes");
-    if (q && r.quotes && r.quotes.length) {
-      r.quotes.forEach(function (x) {
-        var li = document.createElement("li"), bq = document.createElement("blockquote"), c = document.createElement("cite");
-        bq.textContent = "„" + x.text + "“";
-        c.textContent = [x.author, x.date].filter(Boolean).join(" · ") + " · Booking.com";
-        li.appendChild(bq); li.appendChild(c); q.appendChild(li);
-      });
+
+    var root = document.getElementById("rcar");
+    if (!root) return;
+    var items = (r.items || []).filter(function (i) { return i && i.text; });
+    if (!items.length && /[?&]reviews=demo\b/.test(location.search)) {
+      // clearly marked placeholders so the design can be shown; never used without ?reviews=demo
+      items = [
+        { text: "Platzhaltertext: Hier erscheint eine echte Bewertung eines Gastes.", author: "Vorname", country: "Land", date: "Monat 2026", source: "Beispiel", rating: "10/10", lang: "de" },
+        { text: "Platzhaltertext: Hier erscheint eine etwas längere echte Bewertung eines Gastes, ausgewählt von den Betreibern, damit man sieht, wie mehrere Zeilen und mehrere Sätze in der Diashow dargestellt werden und dass sich die Höhe nicht verändert.", author: "Vorname", country: "Land", date: "Monat 2026", source: "Beispiel", rating: "5/5", lang: "de" },
+        { text: "Platzhaltertext: Noch eine Bewertung, kurz und knapp.", author: "Vorname", country: "Land", date: "Monat 2026", source: "Beispiel", lang: "de" }
+      ];
+      var dm = document.getElementById("rcar-demo"); if (dm) dm.hidden = false;
     }
+    if (!items.length) return; // nothing to show: the slideshow stays hidden
+
+    var stage = document.getElementById("rcar-stage"), dotsEl = document.getElementById("rcar-dots");
+    var prevBtn = document.getElementById("rcar-prev"), nextBtn = document.getElementById("rcar-next");
+    var idx = 0, timer = null, paused = false, stopped = false, visible = true, slides = [], dots = [];
+    var INTERVAL = 8000;
+
+    function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+    items.forEach(function (it, i) {
+      var fig = el("figure", "rcar__slide");
+      fig.setAttribute("role", "group"); fig.setAttribute("aria-roledescription", "slide"); fig.setAttribute("aria-label", (i + 1) + " / " + items.length);
+      var bq = el("blockquote", null, it.text); if (it.lang) bq.setAttribute("lang", it.lang);
+      var cap = el("figcaption");
+      var who = [it.author, it.country].filter(Boolean).join(", ");
+      var meta = [it.date, it.rating].filter(Boolean).join(" · ");
+      if (who) cap.appendChild(el("span", "rcar__who", who));
+      if (meta) cap.appendChild(el("span", "rcar__meta", meta));
+      if (it.source) cap.appendChild(el("span", "rcar__src", it.source));
+      fig.appendChild(bq); fig.appendChild(cap); stage.appendChild(fig); slides.push(fig);
+      var d = el("button"); d.type = "button"; d.setAttribute("aria-label", String(i + 1));
+      d.addEventListener("click", function () { userGo(i); });
+      dotsEl.appendChild(d); dots.push(d);
+    });
+    if (items.length < 2) { prevBtn.hidden = nextBtn.hidden = dotsEl.hidden = true; }
+
+    function schedule() {
+      clearTimeout(timer);
+      if (stopped || paused || !visible || document.hidden || items.length < 2 || reduceMotion) return;
+      timer = setTimeout(function () { go(idx + 1); }, INTERVAL);
+    }
+    function go(i) {
+      idx = (i + items.length) % items.length;
+      slides.forEach(function (s, k) { s.classList.toggle("is-active", k === idx); s.setAttribute("aria-hidden", k === idx ? "false" : "true"); });
+      dots.forEach(function (d, k) { d.setAttribute("aria-current", k === idx ? "true" : "false"); });
+      schedule();
+    }
+    function userGo(i) { stopped = true; go(i); }   // once the visitor takes over, the automatic change stops
+
+    prevBtn.addEventListener("click", function () { userGo(idx - 1); });
+    nextBtn.addEventListener("click", function () { userGo(idx + 1); });
+    root.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { userGo(idx - 1); e.preventDefault(); }
+      else if (e.key === "ArrowRight") { userGo(idx + 1); e.preventDefault(); }
+    });
+    root.addEventListener("mouseenter", function () { paused = true; clearTimeout(timer); });
+    root.addEventListener("mouseleave", function () { paused = false; schedule(); });
+    root.addEventListener("focusin", function () { paused = true; clearTimeout(timer); });
+    root.addEventListener("focusout", function () { paused = false; schedule(); });
+    document.addEventListener("visibilitychange", schedule);
+    var tx = null;
+    stage.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", function (e) {
+      if (tx === null) return;
+      var dx = e.changedTouches[0].clientX - tx; tx = null;
+      if (Math.abs(dx) > 45) userGo(idx + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; schedule(); }, { threshold: 0.3 }).observe(root);
+    }
+    root.hidden = false;
+    go(0);
   })();
   document.addEventListener("click", function (e) {
     var a = e.target.closest("[data-unit]");

@@ -83,7 +83,9 @@ window.I18N = {
     "rv.booking": "Alle Bewertungen auf Booking.com",
     "rv.google": "Bewertungen auf Google",
     "sm.gate.text": "Zum Buchen wird das Buchungssystem von Smoobu geladen. Dabei werden Daten wie Ihre IP-Adresse an Smoobu übertragen. Mehr dazu in der <a href=\"datenschutz.html\" data-legal=\"datenschutz\" target=\"_blank\">Datenschutzerklärung</a>.",
-    "sm.gate.btn": "Buchungssystem laden"
+    "sm.gate.btn": "Buchungssystem laden",
+    "rv.region": "Gästebewertungen",
+    "rv.demo": "Demo-Ansicht mit Platzhaltertexten – hier erscheinen später echte Gästebewertungen."
   },
 
   en: {
@@ -169,7 +171,9 @@ window.I18N = {
     "rv.booking": "All reviews on Booking.com",
     "rv.google": "Reviews on Google",
     "sm.gate.text": "To book, the booking system from Smoobu is loaded. Data such as your IP address is transferred to Smoobu. More in the <a href=\"datenschutz.html\" data-legal=\"datenschutz\" target=\"_blank\">privacy policy</a>.",
-    "sm.gate.btn": "Load booking system"
+    "sm.gate.btn": "Load booking system",
+    "rv.region": "Guest reviews",
+    "rv.demo": "Demo view with placeholder texts – real guest reviews will appear here later."
   },
 
   fr: {
@@ -255,7 +259,9 @@ window.I18N = {
     "rv.booking": "Tous les avis sur Booking.com",
     "rv.google": "Avis sur Google",
     "sm.gate.text": "Pour réserver, le système de réservation de Smoobu est chargé. Des données telles que votre adresse IP sont alors transmises à Smoobu. Plus d’informations dans la <a href=\"datenschutz.html\" data-legal=\"datenschutz\" target=\"_blank\">politique de confidentialité</a>.",
-    "sm.gate.btn": "Charger le système de réservation"
+    "sm.gate.btn": "Charger le système de réservation",
+    "rv.region": "Avis des voyageurs",
+    "rv.demo": "Aperçu avec des textes provisoires – de vrais avis de voyageurs apparaîtront ici plus tard."
   },
 
   it: {
@@ -341,6 +347,8 @@ window.I18N = {
     "rv.booking": "Tutte le recensioni su Booking.com",
     "rv.google": "Recensioni su Google",
     "sm.gate.text": "Per prenotare viene caricato il sistema di prenotazione di Smoobu. Vengono trasmessi a Smoobu dati come il vostro indirizzo IP. Maggiori informazioni nell’<a href=\"datenschutz.html\" data-legal=\"datenschutz\" target=\"_blank\">informativa sulla privacy</a>.",
-    "sm.gate.btn": "Carica il sistema di prenotazione"
+    "sm.gate.btn": "Carica il sistema di prenotazione",
+    "rv.region": "Recensioni degli ospiti",
+    "rv.demo": "Anteprima con testi segnaposto – qui appariranno in seguito vere recensioni degli ospiti."
   }
 };
