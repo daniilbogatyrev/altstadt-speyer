@@ -12,10 +12,10 @@
     { "binding": "DB", "database_name": "altstadt-speyer" }
   ],
   "triggers": { "crons": ["*/15 * * * *"] },
-  "routes": [{ "pattern": "test.dbogatyrev.com", "custom_domain": true }],
+  // Preview on workers.dev. For the live domain add: "routes": [{ "pattern": "test.dbogatyrev.com", "custom_domain": true }] and set SITE_URL accordingly.
   "observability": { "enabled": true },
   "vars": {
-    "SITE_URL": "https://test.dbogatyrev.com",
+    "SITE_URL": "https://altstadt-speyer.daniil-bogatyrev.workers.dev",
     "MAIL_FROM": "FeWo Altstadt Speyer <buchung@dbogatyrev.com>",
     // Public Turnstile site key (empty = spam check off). Test key that always passes: 1x00000000000000000000AA
     "TURNSTILE_SITE_KEY": ""
