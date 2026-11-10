@@ -22,3 +22,10 @@ export function todayBerlin(now = new Date()): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
 }
 export interface Range { start: string; end: string }
+
+/** ISO timestamp `months` months before `now` (used for the retention of rejected/expired requests). */
+export function purgeCutoff(now: Date, months: number): string {
+  const d = new Date(now.getTime());
+  d.setUTCMonth(d.getUTCMonth() - months);
+  return d.toISOString();
+}

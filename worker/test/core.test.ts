@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addDays, isDate, nightsBetween, overlaps } from "../src/dates";
+import { addDays, isDate, nightsBetween, overlaps, purgeCutoff } from "../src/dates";
 import { DEFAULTS, UNIT_DEFAULTS, normalizeSettings, quote, validateStay, type UnitSettings } from "../src/pricing";
 import { buildIcal, parseIcal } from "../src/ical";
 import { hmac, verifyStripe } from "../src/crypto";
@@ -17,6 +17,13 @@ describe("dates", () => {
   it("treats checkout day as free (back-to-back stays)", () => {
     expect(overlaps("2027-05-01", "2027-05-03", "2027-05-03", "2027-05-05")).toBe(false);
     expect(overlaps("2027-05-01", "2027-05-04", "2027-05-03", "2027-05-05")).toBe(true);
+  });
+});
+
+describe("retention", () => {
+  it("computes the cutoff for deleting old requests", () => {
+    expect(purgeCutoff(new Date("2027-11-10T10:00:00.000Z"), 12)).toBe("2026-11-10T10:00:00.000Z");
+    expect(purgeCutoff(new Date("2027-03-15T00:00:00.000Z"), 12)).toBe("2026-03-15T00:00:00.000Z");
   });
 });
 

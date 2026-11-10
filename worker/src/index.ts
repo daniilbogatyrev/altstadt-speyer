@@ -1,4 +1,4 @@
-import { addDays, isDate, todayBerlin, type Range } from "./dates";
+import { addDays, isDate, purgeCutoff, todayBerlin, type Range } from "./dates";
 import { normalizeSettings, quote, validateStay, isUnit, UNITS, UNIT_NAMES, type Season, type Settings, type UnitId } from "./pricing";
 import { buildIcal, parseIcal, type IcalEvent } from "./ical";
 import { hmac, newId, safeEqual, verifyStripe } from "./crypto";
@@ -350,6 +350,13 @@ async function expireStale(env: Env) {
   }
 }
 
+/** Privacy: rejected and expired requests are deleted after RETENTION_MONTHS (stated in the privacy policy, keep legal/legal.json in sync). Confirmed/paid/cancelled bookings stay for statutory retention. */
+const RETENTION_MONTHS = 12;
+async function purgeOld(env: Env) {
+  const r = await env.DB.prepare("DELETE FROM bookings WHERE status IN ('declined','expired') AND created_at < ?").bind(purgeCutoff(new Date(), RETENTION_MONTHS)).run();
+  if (r.meta.changes) console.log(`[purge] deleted ${r.meta.changes} old requests`);
+}
+
 /* ---------- entry ---------- */
 export default {
   async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -371,7 +378,7 @@ export default {
     return env.ASSETS.fetch(req);
   },
   async scheduled(_c: ScheduledController, env: Env, ctx: ExecutionContext) {
-    ctx.waitUntil(Promise.all([syncAll(env), expireStale(env)]));
+    ctx.waitUntil(Promise.all([syncAll(env), expireStale(env), purgeOld(env)]));
   },
 } satisfies ExportedHandler<Env>;
 
