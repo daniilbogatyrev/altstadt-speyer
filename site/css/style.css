@@ -137,12 +137,12 @@ address { font-style: normal; }
 .hero__main { position: relative; aspect-ratio: 4 / 3; background: var(--surface); }
 .hero__main::before { content: ""; position: absolute; inset: clamp(14px, 2vw, 28px) calc(clamp(14px, 2vw, 28px) * -1) calc(clamp(14px, 2vw, 28px) * -1) clamp(14px, 2vw, 28px); border: 1px solid var(--gold); z-index: 0; }
 .hero__main img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; }
-.hero__small { position: absolute; z-index: 2; left: -11%; bottom: -13%; width: 40%; aspect-ratio: 4 / 3; border: 8px solid var(--bg); box-shadow: 0 20px 44px rgba(40, 30, 10, .16); background: var(--surface); }
+.hero__small { position: absolute; z-index: 2; left: -9%; bottom: -13%; width: 40%; aspect-ratio: 4 / 3; border: 8px solid var(--bg); box-shadow: 0 20px 44px rgba(40, 30, 10, .16); background: var(--surface); }
 .hero__small img { width: 100%; height: 100%; object-fit: cover; }
 
 .hero__eyebrow, .hero__title, .hero__rule, .hero__lead, .hero__cta { animation: rise 1s var(--ease) both; }
 .hero__title { animation-delay: .08s; } .hero__rule { animation-delay: .16s; } .hero__lead { animation-delay: .24s; } .hero__cta { animation-delay: .32s; }
-.hero__main { animation: unveil 1.3s var(--ease) .1s both; }
+.hero__main img { animation: unveil 1.3s var(--ease) .1s both; }
 .hero__small { animation: rise 1.1s var(--ease) .55s both; }
 @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 @keyframes unveil { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0); } }
