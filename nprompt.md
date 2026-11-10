@@ -1,0 +1,1 @@
+Mein CLient meint, dass es zwei Betten sind die man mieten kann. Er unterscheidet zwischen Superior Apartment mit einem Doppelbett und Deluxe Apartment mit einem Doppelbett und einem Schlafsofa, außerdem möchte er das Reviews hinzugefügt werden mit den beiden Awards von Booking.com, bereits über 250 Bewertungen mit 9,5 von 10 

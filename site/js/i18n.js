@@ -100,7 +100,9 @@ window.I18N = {
     "pay.cancel.text": "Es wurde nichts abgebucht. Über den Link in unserer E-Mail können Sie die Zahlung jederzeit innerhalb der Frist nachholen.",
     "pay.back": "Zur Startseite",
     "hero.eyebrow": "Ferienwohnung · Holzmarkt 4 · Speyer",
-    "hero.cta": "Verfügbarkeit prüfen"
+    "hero.cta": "Verfügbarkeit prüfen",
+    "theme.dark": "Dunkelmodus einschalten",
+    "theme.light": "Hellmodus einschalten"
   },
 
   en: {
@@ -203,7 +205,9 @@ window.I18N = {
     "pay.cancel.text": "Nothing was charged. You can complete the payment at any time within the deadline using the link in our email.",
     "pay.back": "Back to the homepage",
     "hero.eyebrow": "Holiday apartment · Holzmarkt 4 · Speyer",
-    "hero.cta": "Check availability"
+    "hero.cta": "Check availability",
+    "theme.dark": "Switch to dark mode",
+    "theme.light": "Switch to light mode"
   },
 
   fr: {
@@ -306,7 +310,9 @@ window.I18N = {
     "pay.cancel.text": "Rien n’a été débité. Vous pouvez finaliser le paiement à tout moment dans le délai via le lien de notre e-mail.",
     "pay.back": "Retour à l’accueil",
     "hero.eyebrow": "Appartement de vacances · Holzmarkt 4 · Spire",
-    "hero.cta": "Voir les disponibilités"
+    "hero.cta": "Voir les disponibilités",
+    "theme.dark": "Activer le mode sombre",
+    "theme.light": "Activer le mode clair"
   },
 
   it: {
@@ -409,6 +415,8 @@ window.I18N = {
     "pay.cancel.text": "Non è stato addebitato nulla. Potete completare il pagamento in qualsiasi momento entro il termine tramite il link nella nostra e-mail.",
     "pay.back": "Torna alla home",
     "hero.eyebrow": "Appartamento vacanze · Holzmarkt 4 · Spira",
-    "hero.cta": "Verifica la disponibilità"
+    "hero.cta": "Verifica la disponibilità",
+    "theme.dark": "Attiva la modalità scura",
+    "theme.light": "Attiva la modalità chiara"
   }
 };

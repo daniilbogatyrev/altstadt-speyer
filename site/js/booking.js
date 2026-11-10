@@ -13,7 +13,7 @@
   var cfg = null, busy = [], today = null;
   var view = null;                 // first day of the left month, "YYYY-MM-01"
   var checkin = null, checkout = null, quote = null;
-  var turnstileId = null, quoteSeq = 0;
+  var turnstileId = null, turnstileKey = "", quoteSeq = 0;
 
   function lang() { return document.documentElement.lang || "de"; }
   function t(key, vars) {
@@ -174,7 +174,7 @@
   }
   function initTurnstile(key) {
     if (!key) return;
-    window.__bkTurnstile = function () { turnstileId = window.turnstile.render("#bk-turnstile", { sitekey: key, language: lang() }); };
+    window.__bkTurnstile = function () { turnstileKey = key; turnstileId = window.turnstile.render("#bk-turnstile", { sitekey: key, language: lang(), theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light" }); };
     var s = document.createElement("script");
     s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__bkTurnstile";
     s.async = true; document.head.appendChild(s);
@@ -191,6 +191,10 @@
     root.classList.add("is-offline");
     monthsEl.innerHTML = '<p class="muted">' + t("bk.offline") + "</p>";
     form.hidden = true;
+  });
+
+  document.addEventListener("themechange", function () {
+    if (window.turnstile && turnstileId !== null) { window.turnstile.remove(turnstileId); turnstileId = window.turnstile.render("#bk-turnstile", { sitekey: turnstileKey, language: lang(), theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light" }); }
   });
 
   document.addEventListener("langchange", function () {
