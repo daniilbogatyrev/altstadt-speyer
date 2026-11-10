@@ -317,6 +317,7 @@
       if (who) cap.appendChild(el("span", "rcar__who", who));
       if (meta) cap.appendChild(el("span", "rcar__meta", meta));
       if (it.source) cap.appendChild(el("span", "rcar__src", it.source));
+      if (it.title) { var tt = el("p", "rcar__title", it.title); if (it.lang) tt.setAttribute("lang", it.lang); fig.appendChild(tt); }
       fig.appendChild(bq); fig.appendChild(cap); stage.appendChild(fig); slides.push(fig);
       var d = el("button"); d.type = "button"; d.setAttribute("aria-label", String(i + 1));
       d.addEventListener("click", function () { userGo(i); });
