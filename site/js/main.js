@@ -9,6 +9,12 @@
   var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function t(k) { return (dict && dict[k]) || k; }
+  // {score} / {count} in texts come from js/reviews-config.js
+  function fill(v) {
+    var r = window.REVIEWS || {}, score = String(r.score || "");
+    if (document.documentElement.lang === "en") score = score.replace(",", ".");
+    return String(v).replace(/\{score\}/g, score).replace(/\{count\}/g, r.count || "");
+  }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
   function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
 
@@ -43,8 +49,9 @@
 
     $$("[data-i18n]").forEach(function (el) {
       var v = dict[el.getAttribute("data-i18n")];
-      if (v != null) el.textContent = v;
+      if (v != null) el.textContent = fill(v);
     });
+    $$("[data-rv=score]").forEach(function (el) { el.textContent = fill("{score}"); });
     $$("[data-i18n-html]").forEach(function (el) {
       var v = dict[el.getAttribute("data-i18n-html")];
       if (v != null) el.innerHTML = v; // our own strings only
@@ -274,6 +281,28 @@
     var onSystem = function (e) { if (!storedTheme()) applyTheme(e.matches ? "dark" : "light", true); };
     if (mq.addEventListener) mq.addEventListener("change", onSystem);
   }
+
+  /* ---------- reviews (google link, quotes) + apartment preselection ---------- */
+  (function () {
+    var r = window.REVIEWS || {};
+    var g = document.getElementById("rv-google");
+    if (g && r.googleUrl) { g.href = r.googleUrl; g.hidden = false; }
+    var q = document.getElementById("rv-quotes");
+    if (q && r.quotes && r.quotes.length) {
+      r.quotes.forEach(function (x) {
+        var li = document.createElement("li"), bq = document.createElement("blockquote"), c = document.createElement("cite");
+        bq.textContent = "„" + x.text + "“";
+        c.textContent = [x.author, x.date].filter(Boolean).join(" · ") + " · Booking.com";
+        li.appendChild(bq); li.appendChild(c); q.appendChild(li);
+      });
+    }
+  })();
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("[data-unit]");
+    if (!a) return;
+    window.SELECTED_UNIT = a.getAttribute("data-unit");
+    document.dispatchEvent(new CustomEvent("selectunit", { detail: window.SELECTED_UNIT }));
+  });
 
   /* ---------- init ---------- */
   applyTheme(currentTheme(), false);

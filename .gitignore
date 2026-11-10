@@ -1,7 +1,10 @@
-images/
-favicon/
-logo/
-node_modules/
-.wrangler/
 .dev.vars
 .env
+favicon/
+images/
+logo/
+node_modules/
+notes.md
+nprompt.md
+reviews/
+.wrangler/

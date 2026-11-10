@@ -1,15 +1,28 @@
-/* Loads the Smoobu booking engine into #smoobu-widget, in the page language.
+/* Apartment tabs + Smoobu booking engine in #smoobu-widget, in the page language.
    Without IDs in js/smoobu-config.js the preview note stays visible. */
 (function () {
   "use strict";
-  var cfg = window.SMOOBU || {};
-  var box = document.getElementById("smoobu");
-  var target = document.getElementById("smoobu-widget");
-  if (!box || !target || !cfg.userId) return;
+  var cfg = window.SMOOBU || {}, apts = cfg.apartments || {};
+  var box = document.getElementById("smoobu"), target = document.getElementById("smoobu-widget"), tabsEl = document.getElementById("utabs");
+  if (!box || !target) return;
 
   var BASE = "https://login.smoobu.com";
   var LANGS = ["de", "en", "fr", "it"];
+  var LOCALE = { de: "de-DE", en: "en-GB", fr: "fr-FR", it: "it-IT" };
+  var unit = apts[window.SELECTED_UNIT] ? window.SELECTED_UNIT : "superior";
   var scriptLoaded = null;
+
+  function lang() { return LANGS.indexOf(document.documentElement.lang) > -1 ? document.documentElement.lang : "de"; }
+  function t(k) { var d = window.I18N[lang()] || window.I18N.de; return d[k] != null ? d[k] : k; }
+  function money(n) { return new Intl.NumberFormat(LOCALE[lang()], { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(n); }
+
+  function renderTabs() {
+    if (!tabsEl) return;
+    tabsEl.innerHTML = Object.keys(apts).map(function (k) {
+      var a = apts[k];
+      return '<button type="button" role="tab" class="utab" data-u="' + k + '" aria-selected="' + (k === unit) + '"><span class="utab__name">' + a.name + '</span><span class="utab__price">' + money(a.price) + " / " + t("apt.night.short") + "</span></button>";
+    }).join("");
+  }
 
   function loadScript() {
     if (!scriptLoaded) {
@@ -24,15 +37,22 @@
   }
 
   function render() {
-    var lang = LANGS.indexOf(document.documentElement.lang) > -1 ? document.documentElement.lang : "de";
-    var url = BASE + "/" + lang + "/booking-tool/iframe/" + encodeURIComponent(cfg.userId) + (cfg.apartmentId ? "/" + encodeURIComponent(cfg.apartmentId) : "");
+    renderTabs();
+    var a = apts[unit];
+    target.innerHTML = "";
+    if (!cfg.userId || !a || !a.id) { box.classList.remove("is-live"); return; }
+    var url = BASE + "/" + lang() + "/booking-tool/iframe/" + encodeURIComponent(cfg.userId) + "/" + encodeURIComponent(a.id);
     loadScript().then(function () {
-      target.innerHTML = "";
       window.BookingToolIframe.initialize({ url: url, baseUrl: BASE, target: "#smoobu-widget" });
       box.classList.add("is-live");
     }).catch(function () { box.classList.remove("is-live"); });
   }
 
-  render();
+  if (tabsEl) tabsEl.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-u]");
+    if (b && b.getAttribute("data-u") !== unit) { unit = b.getAttribute("data-u"); render(); }
+  });
+  document.addEventListener("selectunit", function (e) { if (apts[e.detail] && e.detail !== unit) { unit = e.detail; render(); } });
   document.addEventListener("langchange", render);
+  render();
 })();

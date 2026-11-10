@@ -10,15 +10,15 @@ npm run dev             # http://localhost:8787
 ```
 
 ## Smoobu einrichten (macht der Vermieter)
-1. Konto auf smoobu.com anlegen (14 Tage kostenlos testbar) und die Unterkunft anlegen.
-2. Unter „Portale" Booking.com und Airbnb verbinden. Ab dann gleicht Smoobu die Kalender in Echtzeit ab.
+1. Konto auf smoobu.com anlegen (14 Tage kostenlos testbar) und **zwei Unterkünfte** anlegen: Superior Apartment (1 Doppelbett) und Deluxe Apartment (1 Doppelbett + 1 Schlafsofa), je 125 € pro Nacht.
+2. Unter „Portale" Booking.com und Airbnb verbinden und jedes Apartment dem passenden Zimmertyp bzw. Inserat zuordnen. Ab dann gleicht Smoobu die Kalender je Apartment in Echtzeit ab.
 3. Preise, Mindestaufenthalt und Endreinigung in Smoobu pflegen.
 4. Unter „Buchungssystem" den Zahlungsanbieter (Stripe oder PayPal) und die Buchungsbedingungen hinterlegen.
 
 ## Website verbinden
 1. In Smoobu: Einstellungen → Buchungssystem → „In Website einbetten". Im angezeigten Code steht eine Adresse der Form
    `https://login.smoobu.com/de/booking-tool/iframe/<userId>/<apartmentId>`.
-2. Beide Zahlen in `site/js/smoobu-config.js` eintragen.
+2. `userId` und die Nummer **jedes** Apartments in `site/js/smoobu-config.js` eintragen. Auf der Website erscheinen zwei Reiter, jeder lädt das Widget seines Apartments.
 3. `npm run deploy`.
 
 Solange `userId` leer ist, zeigt der Abschnitt „Verfügbarkeit & Buchung" nur einen Vorschau-Hinweis.
@@ -28,3 +28,6 @@ Solange `userId` leer ist, zeigt der Abschnitt „Verfügbarkeit & Buchung" nur 
 - `tools/build-images.sh` erzeugt die Fotos (Quelle: `images/`).
 
 Der Vergleich mit der kostenlosen Variante steht in `VARIANTEN.md`.
+
+## Bewertungen
+Note, Anzahl, Google-Link und Gästezitate stehen in `site/js/reviews-config.js`. Die Award-Bilder entstehen mit `tools/build-awards.sh` aus den Screenshots in `reviews/` (besser: die offiziellen Dateien aus dem Booking.com-Extranet).

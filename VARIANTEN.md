@@ -15,6 +15,9 @@ Beide Varianten nutzen dieselbe Website und dasselbe Logo. Sie unterscheiden sic
 | Wartung | beim Betreiber der Website | beim Anbieter |
 | Abhängigkeit | keine, alles gehört dem Vermieter | vom Anbieter und seinem Tarif |
 
+## Zwei Apartments
+Beide Varianten kennen **Superior Apartment** (1 Doppelbett) und **Deluxe Apartment** (1 Doppelbett + 1 Schlafsofa), je 125 € pro Nacht, mit getrenntem Kalender. Bei der kostenlosen Variante hat jedes Apartment eigene iCal-Adressen für Booking.com und Airbnb, eigene Preise und eine eigene Gästegrenze (Zustellbetten mit Aufpreis je Gast und Nacht einstellbar). Bei Smoobu sind es zwei Unterkünfte im Konto.
+
 ## Wann welche Variante passt
 - **Kostenlos**, wenn der Vermieter jede Buchung ohnehin selbst prüfen möchte und es wenige Buchungen pro Monat gibt.
 - **Smoobu**, wenn Gäste sofort buchen sollen, die Wohnung auf beiden Portalen gut gebucht ist oder der Vermieter Preise und Nachrichten an einer Stelle pflegen will.
