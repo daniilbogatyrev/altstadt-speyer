@@ -59,7 +59,9 @@ window.I18N = {
     "sm.text": "Sobald das Smoobu-Konto verbunden ist, sehen Gäste an dieser Stelle den Kalender mit freien Terminen und Preisen und können direkt buchen und bezahlen.",
     "sm.f1": "Freie Termine in Echtzeit, abgeglichen mit Booking.com und Airbnb",
     "sm.f2": "Preis für den gewählten Zeitraum",
-    "sm.f3": "Sofortbuchung mit Online-Zahlung"
+    "sm.f3": "Sofortbuchung mit Online-Zahlung",
+    "hero.eyebrow": "Ferienwohnung · Holzmarkt 4 · Speyer",
+    "hero.cta": "Verfügbarkeit prüfen"
   },
 
   en: {
@@ -121,7 +123,9 @@ window.I18N = {
     "sm.text": "Once the Smoobu account is connected, guests will see the calendar with available dates and prices here and can book and pay directly.",
     "sm.f1": "Real-time availability, synchronised with Booking.com and Airbnb",
     "sm.f2": "Price for the selected dates",
-    "sm.f3": "Instant booking with online payment"
+    "sm.f3": "Instant booking with online payment",
+    "hero.eyebrow": "Holiday apartment · Holzmarkt 4 · Speyer",
+    "hero.cta": "Check availability"
   },
 
   fr: {
@@ -183,7 +187,9 @@ window.I18N = {
     "sm.text": "Dès que le compte Smoobu sera connecté, les voyageurs verront ici le calendrier avec les dates libres et les prix, et pourront réserver et payer directement.",
     "sm.f1": "Disponibilités en temps réel, synchronisées avec Booking.com et Airbnb",
     "sm.f2": "Prix pour les dates choisies",
-    "sm.f3": "Réservation immédiate avec paiement en ligne"
+    "sm.f3": "Réservation immédiate avec paiement en ligne",
+    "hero.eyebrow": "Appartement de vacances · Holzmarkt 4 · Spire",
+    "hero.cta": "Voir les disponibilités"
   },
 
   it: {
@@ -245,6 +251,8 @@ window.I18N = {
     "sm.text": "Non appena l’account Smoobu sarà collegato, gli ospiti vedranno qui il calendario con date libere e prezzi e potranno prenotare e pagare direttamente.",
     "sm.f1": "Disponibilità in tempo reale, sincronizzata con Booking.com e Airbnb",
     "sm.f2": "Prezzo per le date scelte",
-    "sm.f3": "Prenotazione immediata con pagamento online"
+    "sm.f3": "Prenotazione immediata con pagamento online",
+    "hero.eyebrow": "Appartamento vacanze · Holzmarkt 4 · Spira",
+    "hero.cta": "Verifica la disponibilità"
   }
 };

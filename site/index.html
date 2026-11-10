@@ -93,24 +93,35 @@
   </div>
 
   <main id="main">
-    <!-- HERO: picture only -->
+    <!-- HERO: text left, picture composition right (no text on photos) -->
     <section class="hero" id="top">
-      <img class="hero__img" src="img/hof/01.webp" alt="" fetchpriority="high" width="1024" height="768">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <p class="eyebrow hero__eyebrow" data-i18n="hero.eyebrow">Ferienwohnung · Holzmarkt 4 · Speyer</p>
+          <h1 class="hero__title" data-i18n="intro.l1">Verborgen, doch mitten in Speyer.</h1>
+          <span class="hero__rule" aria-hidden="true"></span>
+          <p class="hero__lead" data-i18n="intro.l1b">Hinter einem alten Hoftor, wenige Schritte vom Kaiserdom.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#book" data-i18n="hero.cta">Verfügbarkeit prüfen</a>
+            <a class="link" href="#room-wohnen" data-i18n="allphotos">Alle Fotos ansehen</a>
+          </div>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <div class="hero__main"><img src="img/wohnen/01.webp" alt="" fetchpriority="high" width="1024" height="768"></div>
+          <div class="hero__small"><img src="img/schlafen/01.webp" alt="" width="1024" height="768"></div>
+        </div>
+      </div>
     </section>
 
-    <!-- INTRO (Wilmina) -->
+    <!-- INTRO -->
     <section class="intro" id="apartment">
       <div class="wrap">
-        <p class="intro__text reveal">
-          <span data-i18n="intro.l1">Verborgen, doch mitten in Speyer.</span><br>
-          <span data-i18n="intro.l1b">Hinter einem alten Hoftor, wenige Schritte vom Kaiserdom.</span>
-        </p>
-        <ul class="intro__imgs reveal">
-          <li><a href="#room-wohnen"><img src="img/wohnen/03-s.webp" alt="" loading="lazy"></a></li>
-          <li><a href="#room-schlafen"><img src="img/schlafen/01-s.webp" alt="" loading="lazy"></a></li>
-          <li><a href="#room-hof"><img src="img/hof/04-s.webp" alt="" loading="lazy"></a></li>
-        </ul>
         <p class="intro__text reveal" data-i18n="intro.l2">Ein Ort zum Ankommen – mit historischem Backstein, einem verwunschenen Innenhof und allem, was zwei Gäste brauchen.</p>
+        <ul class="intro__imgs reveal">
+          <li><a href="#room-wohnen"><img src="img/wohnen/03-s.webp" alt="" loading="lazy"><span data-i18n="cat.wohnen">Wohnen &amp; Küche</span></a></li>
+          <li><a href="#room-schlafen"><img src="img/schlafen/03-s.webp" alt="" loading="lazy"><span data-i18n="cat.schlafen">Schlafzimmer</span></a></li>
+          <li><a href="#room-hof"><img src="img/hof/04-s.webp" alt="" loading="lazy"><span data-i18n="cat.hof">Innenhof</span></a></li>
+        </ul>
         <ul class="facts reveal">
           <li><strong>2</strong> <span data-i18n="facts.guests">Gäste</span></li>
           <li><strong>1</strong> <span data-i18n="facts.bedroom">Schlafzimmer</span></li>
