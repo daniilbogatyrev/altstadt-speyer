@@ -10,7 +10,8 @@
   var form = $("bform"), errEl = $("bk-error"), submitBtn = $("bk-submit"), doneEl = $("bk-done");
   var LOCALE = { de: "de-DE", en: "en-GB", fr: "fr-FR", it: "it-IT" };
 
-  var cfg = null, busy = [], today = null;
+  var cfg = null, busy = [], today = null, unit = "superior";
+  function U() { return cfg.units[unit]; }
   var view = null;                 // first day of the left month, "YYYY-MM-01"
   var checkin = null, checkout = null, quote = null;
   var turnstileId = null, turnstileKey = "", quoteSeq = 0;
@@ -22,7 +23,7 @@
     if (vars) Object.keys(vars).forEach(function (k) { s = s.replace("{" + k + "}", vars[k]); });
     return s;
   }
-  function money(cents) { return new Intl.NumberFormat(LOCALE[lang()], { style: "currency", currency: "EUR" }).format(cents / 100); }
+  function money(cents) { var whole = cents % 100 === 0; return new Intl.NumberFormat(LOCALE[lang()], { style: "currency", currency: "EUR", minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: 2 }).format(cents / 100); }
 
   /* ---- date helpers on "YYYY-MM-DD" strings (UTC, no timezone drift) ---- */
   function toDate(s) { return new Date(s + "T00:00:00Z"); }
@@ -36,7 +37,7 @@
   /** Last possible checkout day for a given checkin (first busy night ends the range). */
   function maxCheckout(ci) {
     var d = ci;
-    for (var i = 0; i < cfg.max_nights; i++) { if (nightBusy(d)) break; d = addDays(d, 1); }
+    for (var i = 0; i < U().max_nights; i++) { if (nightBusy(d)) break; d = addDays(d, 1); }
     return d;
   }
   var lastDay = function () { return addDays(today, Math.round(cfg.max_months_ahead * 30.5)); };
@@ -80,24 +81,26 @@
     $("bk-out").textContent = checkout ? fmtDay(checkout) : "–";
     $("bk-reset").hidden = !checkin;
     if (!checkin) hint(t("bk.h.in"));
-    else if (!checkout) hint(t("bk.h.out", { n: cfg.min_nights }));
+    else if (!checkout) hint(t("bk.h.out", { n: U().min_nights }));
     renderPrice();
   }
   function hint(text, warn) { hintEl.textContent = text; hintEl.classList.toggle("is-warn", !!warn); }
 
   function renderPrice() {
-    if (!quote) { priceEl.innerHTML = '<p class="muted">' + t("bk.from", { p: money(cfg.nightly_cents), n: cfg.min_nights }) + "</p>"; return; }
+    var u = U();
+    if (!quote) { priceEl.innerHTML = '<p class="muted">' + t("bk.from", { p: money(u.nightly_cents), n: u.min_nights }) + "</p>"; return; }
     var rows = quote.lines.map(function (l) {
       return "<div><span>" + l.nights + " × " + money(l.nightly_cents) + " (" + t(l.nights === 1 ? "bk.night" : "bk.nights") + ")</span><span>" + money(l.nights * l.nightly_cents) + "</span></div>";
     }).join("");
-    priceEl.innerHTML = rows + "<div><span>" + t("bk.cleaning") + "</span><span>" + money(quote.cleaning_cents) + '</span></div><div class="bform__total"><span>' + t("bk.total") + "</span><span>" + money(quote.total_cents) + "</span></div>";
+    var extra = quote.extra_guests > 0 && quote.extra_cents > 0 ? "<div><span>" + t("bk.extra", { n: quote.extra_guests }) + "</span><span>" + money(quote.extra_cents) + "</span></div>" : "";
+    priceEl.innerHTML = rows + extra + "<div><span>" + t("bk.cleaning") + "</span><span>" + money(quote.cleaning_cents) + '</span></div><div class="bform__total"><span>' + t("bk.total") + "</span><span>" + money(quote.total_cents) + "</span></div>";
   }
 
   function loadQuote() {
     quote = null; renderPrice();
     if (!checkin || !checkout) return;
     var seq = ++quoteSeq;
-    fetch("/api/quote?checkin=" + checkin + "&checkout=" + checkout + "&guests=" + $("bk-guests").value)
+    fetch("/api/quote?checkin=" + checkin + "&checkout=" + checkout + "&guests=" + $("bk-guests").value + "&unit=" + unit)
       .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         if (seq !== quoteSeq) return;
@@ -109,7 +112,7 @@
 
   function errorText(j) {
     var key = "bk.e." + (j && j.error || "server");
-    var s = t(key, { n: (j && j.min_nights) || (cfg && cfg.min_nights) || "" });
+    var s = t(key, { n: (j && j.min_nights) || (cfg && U().min_nights) || "", g: (j && j.max_guests) || (cfg && U().max_guests) || "" });
     return s === key ? t("bk.e.server") : s;
   }
 
@@ -122,7 +125,7 @@
       if (nightBusy(day)) return;
       checkin = day; checkout = null; quote = null;
     } else {
-      if (nights(checkin, day) < cfg.min_nights) { hint(t("bk.e.min_nights", { n: cfg.min_nights }), true); return; }
+      if (nights(checkin, day) < U().min_nights) { hint(t("bk.e.min_nights", { n: U().min_nights }), true); return; }
       checkout = day;
     }
     showError("");
@@ -143,7 +146,7 @@
     if (!form.checkValidity()) { form.reportValidity(); return; }
     var f = new FormData(form);
     var payload = {
-      checkin: checkin, checkout: checkout, guests: Number(f.get("guests")),
+      unit: unit, checkin: checkin, checkout: checkout, guests: Number(f.get("guests")),
       name: f.get("name"), email: f.get("email"), phone: f.get("phone"), message: f.get("message"),
       website: f.get("website"), consent: f.get("consent") === "on", lang: lang(),
       turnstile: window.turnstile && turnstileId !== null ? window.turnstile.getResponse(turnstileId) : "",
@@ -155,7 +158,7 @@
       .then(function (res) {
         if (!res.ok) throw res.j;
         form.hidden = true; doneEl.hidden = false;
-        $("bk-done-id").textContent = t("bk.ok.id", { id: res.j.id, p: money(res.j.total_cents) });
+        $("bk-done-id").textContent = U().name + " · " + t("bk.ok.id", { id: res.j.id, p: money(res.j.total_cents) });
         doneEl.focus();
         checkin = checkout = quote = null;
         refresh();
@@ -168,9 +171,38 @@
       .then(function () { submitBtn.disabled = false; submitBtn.firstElementChild.textContent = t("bk.submit"); });
   });
 
+  /* ---- apartments ---- */
+  function renderTabs() {
+    var el = $("utabs");
+    if (!el || !cfg) return;
+    el.innerHTML = Object.keys(cfg.units).map(function (k) {
+      var u = cfg.units[k];
+      return '<button type="button" role="tab" class="utab" data-u="' + k + '" aria-selected="' + (k === unit) + '"><span class="utab__name">' + u.name + '</span><span class="utab__price">' + money(u.nightly_cents) + " / " + t("apt.night.short") + "</span></button>";
+    }).join("");
+  }
+  function fillPrices() {
+    if (!cfg) return;
+    var min = Math.min.apply(null, Object.keys(cfg.units).map(function (k) { return cfg.units[k].nightly_cents; }));
+    Array.prototype.forEach.call(document.querySelectorAll("[data-price]"), function (el) {
+      var k = el.getAttribute("data-price"), c = k === "min" ? min : (cfg.units[k] && cfg.units[k].nightly_cents);
+      if (c) el.textContent = money(c);
+    });
+  }
+  function setUnit(k) {
+    if (!cfg || !cfg.units[k]) return Promise.resolve();
+    unit = k; checkin = checkout = quote = null;
+    var u = U(), sel = $("bk-guests"); sel.innerHTML = "";
+    for (var g = 1; g <= u.max_guests; g++) sel.insertAdjacentHTML("beforeend", "<option" + (g === Math.min(u.base_guests, u.max_guests) ? " selected" : "") + ">" + g + "</option>");
+    form.hidden = false; doneEl.hidden = true; showError("");
+    renderTabs();
+    return refresh();
+  }
+  $("utabs").addEventListener("click", function (e) { var b = e.target.closest("[data-u]"); if (b && b.getAttribute("data-u") !== unit) setUnit(b.getAttribute("data-u")); });
+  document.addEventListener("selectunit", function (e) { if (e.detail !== unit) setUnit(e.detail); });
+
   /* ---- data ---- */
   function refresh() {
-    return fetch("/api/availability").then(function (r) { return r.json(); }).then(function (a) { busy = a.busy; today = a.today; render(); });
+    return fetch("/api/availability?unit=" + unit).then(function (r) { return r.json(); }).then(function (a) { busy = a.busy; today = a.today; render(); });
   }
   function initTurnstile(key) {
     if (!key) return;
@@ -182,10 +214,9 @@
 
   fetch("/api/config").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (c) {
     cfg = c; today = c.today; view = today.slice(0, 8) + "01";
-    var sel = $("bk-guests"); sel.innerHTML = "";
-    for (var g = 1; g <= c.max_guests; g++) sel.insertAdjacentHTML("beforeend", "<option" + (g === c.max_guests ? " selected" : "") + ">" + g + "</option>");
+    fillPrices();
     initTurnstile(c.turnstile_site_key);
-    return refresh();
+    return setUnit(c.units[window.SELECTED_UNIT] ? window.SELECTED_UNIT : "superior");
   }).catch(function () {
     // No booking backend reachable: keep the page useful.
     root.classList.add("is-offline");
@@ -199,6 +230,7 @@
 
   document.addEventListener("langchange", function () {
     if (root.classList.contains("is-offline")) { monthsEl.innerHTML = '<p class="muted">' + t("bk.offline") + "</p>"; return; }
+    fillPrices(); renderTabs();
     render();
     if (quote) hint(t("bk.h.ok", { n: quote.nights }));
     submitBtn.firstElementChild.textContent = t("bk.submit");

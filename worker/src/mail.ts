@@ -1,4 +1,5 @@
 import type { Env, Booking } from "./index";
+import { UNIT_NAMES, type UnitId } from "./pricing";
 
 export type Lang = "de" | "en" | "fr" | "it";
 const LOCALE: Record<Lang, string> = { de: "de-DE", en: "en-GB", fr: "fr-FR", it: "it-IT" };
@@ -52,9 +53,10 @@ const T: Record<Lang, Record<Kind, Txt> & { labels: [string, string, string, str
   },
 };
 
+const APT_LABEL: Record<Lang, string> = { de: "Apartment", en: "Apartment", fr: "Appartement", it: "Appartamento" };
 function summaryRows(b: Booking, lang: Lang): [string, string][] {
   const l = T[lang].labels;
-  return [[l[0], day(b.checkin, lang)], [l[1], day(b.checkout, lang)], [l[2], String(b.nights)], [l[3], String(b.guests)], [l[4], money(b.total_cents, lang)], [l[5], b.id]];
+  return [[APT_LABEL[lang], UNIT_NAMES[b.unit as UnitId] ?? b.unit], [l[0], day(b.checkin, lang)], [l[1], day(b.checkout, lang)], [l[2], String(b.nights)], [l[3], String(b.guests)], [l[4], money(b.total_cents, lang)], [l[5], b.id]];
 }
 
 function layout(intro: string, rows: [string, string][], button?: { label: string; url: string }, outro = ""): string {
@@ -97,7 +99,8 @@ export async function mailGuest(env: Env, b: Booking, kind: Kind, ownerEmail: st
 export async function mailOwner(env: Env, b: Booking, kind: "request" | "paid" | "expired", ownerEmail: string, reviewUrl?: string): Promise<boolean> {
   if (!ownerEmail) { console.warn("[mail] no owner_email configured"); return false; }
   const rows: [string, string][] = [...summaryRows(b, "de"), ["Name", b.name], ["E-Mail", b.email], ["Telefon", b.phone || "–"], ["Nachricht", b.message || "–"]];
-  const subject = { request: `Neue Buchungsanfrage ${day(b.checkin)} – ${day(b.checkout)}`, paid: `Zahlung eingegangen: ${b.name}`, expired: `Reservierung verfallen: ${b.name}` }[kind];
+  const apt = UNIT_NAMES[b.unit as UnitId] ?? b.unit;
+  const subject = { request: `Neue Buchungsanfrage ${apt}, ${day(b.checkin)} – ${day(b.checkout)}`, paid: `Zahlung eingegangen: ${b.name}`, expired: `Reservierung verfallen: ${b.name}` }[kind];
   const intro = {
     request: "Es gibt eine neue Buchungsanfrage über die Website. Der Zeitraum ist vorläufig gesperrt, bis Sie bestätigen oder ablehnen.",
     paid: "Der Gast hat bezahlt. Die Buchung ist verbindlich und der Zeitraum bleibt für Booking.com und Airbnb gesperrt.",

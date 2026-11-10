@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FeWo Altstadt Speyer — Ferienwohnung am Holzmarkt</title>
-  <meta name="description" content="Ferienapartment mit Innenhof in der Altstadt von Speyer, Holzmarkt 4. Direkt online anfragen und buchen.">
+  <title>FeWo Altstadt Speyer — Ferienwohnungen am Holzmarkt</title>
+  <meta name="description" content="Zwei Ferienwohnungen mit Innenhof in der Altstadt von Speyer, Holzmarkt 4: Superior und Deluxe Apartment. 9,5 von 10 auf Booking.com. Direkt online buchen.">
   <meta name="theme-color" content="#FFFFFF">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
@@ -17,7 +17,7 @@
   <link rel="alternate" hreflang="x-default" href="./">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="FeWo Altstadt Speyer — Ferienwohnung am Holzmarkt">
+  <meta property="og:title" content="FeWo Altstadt Speyer — Ferienwohnungen am Holzmarkt">
   <meta property="og:description" content="Verborgen, doch mitten in Speyer. Direkt buchen.">
   <meta property="og:image" content="https://test.dbogatyrev.com/img/hof/01.webp">
 
@@ -32,13 +32,15 @@
     "@context": "https://schema.org",
     "@type": "VacationRental",
     "name": "FeWo Altstadt Speyer",
-    "description": "Ferienapartment mit Innenhof, Küche und eigenem Bad in der Altstadt von Speyer.",
+    "description": "Zwei Ferienwohnungen mit Innenhof in der Altstadt von Speyer: Superior Apartment (1 Doppelbett) und Deluxe Apartment (1 Doppelbett und 1 Schlafsofa).",
     "address": { "@type": "PostalAddress", "streetAddress": "Holzmarkt 4", "postalCode": "67346", "addressLocality": "Speyer", "addressCountry": "DE" },
-    "image": "https://test.dbogatyrev.com/img/hof/01.webp",
+    "image": "https://test.dbogatyrev.com/img/wohnen/01.webp",
     "checkinTime": "16:00",
     "checkoutTime": "10:00",
-    "numberOfRooms": 1,
-    "occupancy": { "@type": "QuantitativeValue", "maxValue": 2 },
+    "containsPlace": [
+      { "@type": "Accommodation", "name": "Superior Apartment", "numberOfRooms": 1, "occupancy": { "@type": "QuantitativeValue", "maxValue": 2 }, "bed": { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "Double bed" } },
+      { "@type": "Accommodation", "name": "Deluxe Apartment", "numberOfRooms": 1, "occupancy": { "@type": "QuantitativeValue", "maxValue": 2 }, "bed": [ { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "Double bed" }, { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "Sofa bed" } ] }
+    ],
     "amenityFeature": [
       { "@type": "LocationFeatureSpecification", "name": "Kitchen", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Free WiFi", "value": true },
@@ -56,7 +58,7 @@
       <a class="brand" href="#top" aria-label="FeWo Altstadt Speyer"><img class="logo--light" src="img/logo-dark.png" alt="FeWo Altstadt Speyer – Ferienwohnung" width="421" height="227"><img class="logo--dark" src="img/logo.png" alt="FeWo Altstadt Speyer – Ferienwohnung" width="421" height="227" loading="lazy"></a>
 
       <nav class="nav" aria-label="Navigation">
-        <a href="#apartment" data-i18n="nav.apt">Wohnung</a>
+        <a href="#apartments" data-i18n="nav.apt">Wohnung</a>
         <a href="#room-hof" data-i18n="nav.court">Innenhof</a>
         <a href="#location" data-i18n="nav.loc">Lage</a>
         <a href="#arrival" data-i18n="nav.arr">Anreise</a>
@@ -84,7 +86,7 @@
   <!-- mobile menu -->
   <div class="menu" id="menu" hidden>
     <nav class="menu__nav">
-      <a href="#apartment" data-i18n="nav.apt">Wohnung</a>
+      <a href="#apartments" data-i18n="nav.apt">Wohnung</a>
       <a href="#room-hof" data-i18n="nav.court">Innenhof</a>
       <a href="#location" data-i18n="nav.loc">Lage</a>
       <a href="#arrival" data-i18n="nav.arr">Anreise</a>
@@ -110,6 +112,7 @@
             <a class="btn" href="#book" data-i18n="hero.cta">Verfügbarkeit prüfen</a>
             <a class="link" href="#room-wohnen" data-i18n="allphotos">Alle Fotos ansehen</a>
           </div>
+          <a class="hero__rating" href="#reviews"><span class="hero__star" aria-hidden="true">★</span><strong data-rv="score">9,5</strong><span>/10</span><span aria-hidden="true">·</span><span data-i18n="hero.rating">Über {count} Bewertungen auf Booking.com</span></a>
         </div>
         <div class="hero__art" aria-hidden="true">
           <div class="hero__main"><img src="img/wohnen/01.webp" alt="" fetchpriority="high" width="1024" height="768"></div>
@@ -128,11 +131,52 @@
           <li><a href="#room-hof"><img src="img/hof/04-s.webp" alt="" loading="lazy"><span data-i18n="cat.hof">Innenhof</span></a></li>
         </ul>
         <ul class="facts reveal">
-          <li><strong>2</strong> <span data-i18n="facts.guests">Gäste</span></li>
-          <li><strong>1</strong> <span data-i18n="facts.bedroom">Schlafzimmer</span></li>
+          <li><strong>2</strong> <span data-i18n="facts.units">Apartments</span></li>
+          <li><span data-i18n="apt.from">ab</span> <strong data-price="min">125 €</strong> <span data-i18n="apt.night">pro Nacht</span></li>
           <li><span>Check-in</span> <strong>16:00</strong></li>
           <li><span>Check-out</span> <strong>10:00</strong></li>
         </ul>
+      </div>
+    </section>
+
+    <!-- APARTMENTS -->
+    <section class="section" id="apartments">
+      <div class="wrap">
+        <h2 class="heading reveal" data-i18n="apt.title">Unsere Apartments</h2>
+        <p class="section__intro reveal" data-i18n="apt.intro">Zwei Apartments mitten in der Altstadt – wählen Sie das passende für Ihren Aufenthalt.</p>
+        <div class="units">
+      <article class="unit reveal" id="unit-superior">
+        <div class="unit__img"><img src="img/schlafen/02.webp" alt="" loading="lazy" width="1024" height="768"></div>
+        <div class="unit__body">
+          <h3 class="unit__title">Superior Apartment</h3>
+          <ul class="unit__facts">
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19V6M3 15h18v4M21 15v-2.5A3.5 3.5 0 0 0 17.5 9H11v6"/><circle cx="7" cy="11.5" r="1.7"/></svg><span data-i18n="apt.sup.beds">1 Doppelbett</span></li>
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20v-1.2A4.8 4.8 0 0 1 10.3 14h3.4a4.8 4.8 0 0 1 4.8 4.8V20"/></svg><span data-i18n="apt.guests">2 Gäste · Zustellbetten auf Anfrage</span></li>
+          </ul>
+          <p class="unit__text" data-i18n="apt.sup.text">Ideal für zwei: ein Doppelbett, eine Küche, ein eigenes Bad – und der verwunschene Innenhof vor der Tür.</p>
+          <div class="unit__foot">
+            <p class="unit__price"><span data-i18n="apt.from">ab</span> <strong data-price="superior">125 €</strong> <span data-i18n="apt.night">pro Nacht</span></p>
+            <a class="btn" href="#book" data-unit="superior" data-i18n="hero.cta">Verfügbarkeit prüfen</a>
+          </div>
+        </div>
+      </article>
+      <article class="unit reveal" id="unit-deluxe">
+        <div class="unit__img"><img src="img/wohnen/12.webp" alt="" loading="lazy" width="1024" height="768"></div>
+        <div class="unit__body">
+          <h3 class="unit__title">Deluxe Apartment</h3>
+          <ul class="unit__facts">
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19V6M3 15h18v4M21 15v-2.5A3.5 3.5 0 0 0 17.5 9H11v6"/><circle cx="7" cy="11.5" r="1.7"/></svg><span data-i18n="apt.del.beds">1 Doppelbett + 1 Schlafsofa</span></li>
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20v-1.2A4.8 4.8 0 0 1 10.3 14h3.4a4.8 4.8 0 0 1 4.8 4.8V20"/></svg><span data-i18n="apt.guests">2 Gäste · Zustellbetten auf Anfrage</span></li>
+          </ul>
+          <p class="unit__text" data-i18n="apt.del.text">Mehr Flexibilität: Doppelbett plus Schlafsofa, Küche und eigenes Bad – auf Anfrage auch mit Zustellbett für zusätzliche Gäste.</p>
+          <div class="unit__foot">
+            <p class="unit__price"><span data-i18n="apt.from">ab</span> <strong data-price="deluxe">125 €</strong> <span data-i18n="apt.night">pro Nacht</span></p>
+            <a class="btn" href="#book" data-unit="deluxe" data-i18n="hero.cta">Verfügbarkeit prüfen</a>
+          </div>
+        </div>
+      </article>
+        </div>
+        <p class="units__note muted reveal" data-i18n="apt.note">Die Fotos zeigen beide Apartments; die Einrichtung kann im Detail abweichen.</p>
       </div>
     </section>
 
@@ -173,6 +217,31 @@
           <button type="button" class="link js-all" data-cat="hof" data-i18n="allphotos">Alle Fotos ansehen</button>
         </div>
       </article>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="section section--surface" id="reviews">
+      <div class="wrap">
+        <h2 class="heading reveal" data-i18n="rv.title">Bewertungen</h2>
+        <div class="reviews reveal">
+          <div class="reviews__score">
+            <p class="reviews__big"><span class="reviews__num" data-rv="score">9,5</span><span class="reviews__of">/ 10</span></p>
+            <p class="reviews__count" data-i18n="hero.rating">Über {count} Bewertungen auf Booking.com</p>
+            <p class="muted" data-i18n="rv.sub">Gesamtbewertung unserer Gäste</p>
+          </div>
+          <div>
+            <ul class="reviews__awards">
+              <li><img src="img/awards/award-2025.webp" alt="Booking.com Traveller Review Awards 2025 – 9.5 out of 10" loading="lazy" width="640" height="641"><span class="eyebrow">Traveller Review Awards 2025</span></li>
+              <li><img src="img/awards/award-2024.webp" alt="Booking.com Traveller Review Awards 2024 – 10 out of 10" loading="lazy" width="640" height="641"><span class="eyebrow">Traveller Review Awards 2024</span></li>
+            </ul>
+          </div>
+        </div>
+        <ul class="reviews__quotes" id="rv-quotes"></ul>
+        <p class="reviews__links reveal">
+          <a class="link js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener"><span data-i18n="rv.booking">Alle Bewertungen auf Booking.com</span> ↗</a>
+          <a class="link" id="rv-google" href="#" target="_blank" rel="noopener" hidden><span data-i18n="rv.google">Bewertungen auf Google</span> ↗</a>
+        </p>
+      </div>
     </section>
 
     <!-- AMENITIES -->
@@ -278,6 +347,8 @@
           <li><span>3</span><span data-i18n="bk.s3">Sicher online bezahlen – Ihre Buchung ist fix</span></li>
         </ol>
 
+        <div class="utabs reveal" id="utabs" role="tablist" aria-label="Apartment"></div>
+
         <div class="book__grid reveal" id="bk">
           <div class="cal" id="cal">
             <div class="cal__bar">
@@ -327,7 +398,7 @@
       <div class="footer__brand"><img class="logo--light" src="img/logo-dark.png" alt="FeWo Altstadt Speyer" width="421" height="227" loading="lazy"><img class="logo--dark" src="img/logo.png" alt="FeWo Altstadt Speyer" width="421" height="227" loading="lazy"></div>
       <address class="footer__col">Holzmarkt 4<br>67346 Speyer<br><span data-i18n="f.country">Deutschland</span></address>
       <nav class="footer__col">
-        <a href="#apartment" data-i18n="nav.apt">Wohnung</a>
+        <a href="#apartments" data-i18n="nav.apt">Wohnung</a>
         <a href="#room-hof" data-i18n="nav.court">Innenhof</a>
         <a href="#location" data-i18n="nav.loc">Lage</a>
         <a href="#arrival" data-i18n="nav.arr">Anreise</a>
@@ -355,6 +426,7 @@
 
   <script src="js/photos.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="js/reviews-config.js"></script>
   <script src="js/main.js"></script>
   <script src="js/booking.js"></script>
 </body>

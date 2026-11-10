@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS bookings (
   phone TEXT NOT NULL DEFAULT '',
   message TEXT NOT NULL DEFAULT '',
   lang TEXT NOT NULL DEFAULT 'de',
+  unit TEXT NOT NULL DEFAULT 'superior',   -- superior | deluxe
   nights INTEGER NOT NULL,
   total_cents INTEGER NOT NULL,
   quote_json TEXT NOT NULL DEFAULT '{}',
@@ -19,9 +20,11 @@ CREATE TABLE IF NOT EXISTS bookings (
   updated_at TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS bookings_dates ON bookings (status, checkin, checkout);
+CREATE INDEX IF NOT EXISTS bookings_unit_dates ON bookings (unit, status, checkin, checkout);
 
 CREATE TABLE IF NOT EXISTS blocks (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
+  unit TEXT NOT NULL DEFAULT 'superior',
   source TEXT NOT NULL,            -- booking | airbnb | manual
   uid TEXT NOT NULL DEFAULT '',
   start TEXT NOT NULL,
@@ -29,6 +32,7 @@ CREATE TABLE IF NOT EXISTS blocks (
   note TEXT NOT NULL DEFAULT ''
 );
 CREATE INDEX IF NOT EXISTS blocks_dates ON blocks (start, end);
+CREATE INDEX IF NOT EXISTS blocks_unit_dates ON blocks (unit, start, end);
 
 CREATE TABLE IF NOT EXISTS settings (
   key TEXT PRIMARY KEY,

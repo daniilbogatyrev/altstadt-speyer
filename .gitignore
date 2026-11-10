@@ -5,3 +5,6 @@ node_modules/
 .wrangler/
 .dev.vars
 .env
+reviews/
+notes.md
+nprompt.md
