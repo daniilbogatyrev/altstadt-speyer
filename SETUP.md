@@ -26,8 +26,8 @@ Ohne `RESEND_API_KEY` werden E-Mails nur ins Log geschrieben, ohne `STRIPE_SECRE
    - `STRIPE_WEBHOOK_SECRET` – Stripe → Entwickler → Webhooks → Endpoint `https://<domain>/api/stripe/webhook`
      mit den Events `checkout.session.completed` und `checkout.session.expired`
    - `TURNSTILE_SECRET` – Cloudflare → Turnstile; den öffentlichen Site-Key als `TURNSTILE_SITE_KEY` in `wrangler.jsonc` eintragen
-5. In `/admin` eintragen: Preise, Mindestnächte, E-Mail des Vermieters, iCal-Export-Adressen von Booking.com und Airbnb.
-6. Die zwei Adressen aus `/admin` („Kalender-Abgleich") in Booking.com und Airbnb als Kalender-Import eintragen.
+5. In `/admin` eintragen, **getrennt für Superior und Deluxe**: Preise (125 € pro Nacht voreingestellt), Endreinigung, Mindestnächte, Gästezahl und Zusatzgast-Aufpreis, iCal-Export-Adressen von Booking.com und Airbnb; dazu die E-Mail des Vermieters.
+6. Die vier Adressen aus `/admin` (je Apartment eine für Booking.com und eine für Airbnb) („Kalender-Abgleich") in Booking.com und Airbnb als Kalender-Import eintragen.
 7. GitHub Pages im Repo deaktivieren.
 
 ## Ablauf einer Buchung
@@ -37,3 +37,9 @@ Unbeantwortete Anfragen verfallen nach 48 h, unbezahlte Bestätigungen nach 24 h
 ## Logo und Fotos
 - `python3 tools/build-logo.py` erzeugt aus `logo/image.png` die freigestellten Logos und Favicons.
 - `tools/build-images.sh` erzeugt die Fotos (Quelle: `images/`).
+
+## Bewertungen
+Note, Anzahl, Google-Link und Gästezitate stehen in `site/js/reviews-config.js`. Die Award-Bilder entstehen mit `tools/build-awards.sh` aus den Screenshots in `reviews/` (besser: die offiziellen Dateien aus dem Booking.com-Extranet).
+
+## Datenbank-Migration (bestehende Installation)
+`npx wrangler d1 execute altstadt-speyer --remote --file worker/migrations/002_units.sql`, danach `npm run deploy`.
