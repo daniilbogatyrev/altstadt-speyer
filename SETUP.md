@@ -1,39 +1,30 @@
-# FeWo Altstadt Speyer – Einrichtung des Buchungssystems
+# FeWo Altstadt Speyer – Variante mit Smoobu
 
-Die Website (`site/`) und das Buchungssystem (`worker/`) laufen zusammen als ein Cloudflare Worker.
-Kosten: Cloudflare, Resend und Turnstile im Gratis-Tarif; Stripe nur Gebühren pro Zahlung.
+Die Website (`site/`) ist rein statisch und wird über Cloudflare ausgeliefert. Kalender, Buchung, Zahlung und der Abgleich mit Booking.com und Airbnb laufen im Smoobu-Konto des Vermieters.
+Kosten: Smoobu-Tarif (ca. 23–35 € im Monat für eine Unterkunft, Preis bei Smoobu prüfen), Website-Hosting kostenlos.
 
 ## Lokal starten
 ```
 npm install
-npm run db:local        # legt die lokale Datenbank an
-npm run dev             # http://localhost:8787  (Admin: /admin, Passwort in .dev.vars)
-npm test
+npm run dev             # http://localhost:8787
 ```
-`.dev.vars` (nicht im Repo) enthält die lokalen Secrets: `ADMIN_PASSWORD`, `SIGNING_KEY`, `ICAL_TOKEN`, `OWNER_EMAIL`, `SITE_URL=http://localhost:8787`.
-Ohne `RESEND_API_KEY` werden E-Mails nur ins Log geschrieben, ohne `STRIPE_SECRET_KEY` wird kein Zahlungslink erzeugt.
 
-## Live schalten
-1. `npx wrangler login`
-2. In Cloudflare unter DNS den alten Eintrag `test` (CNAME auf GitHub Pages) löschen.
-3. `npm run deploy` (legt die D1-Datenbank automatisch an), danach `npm run db:remote`.
-4. Secrets setzen, jeweils mit `npx wrangler secret put NAME`:
-   - `ADMIN_PASSWORD` – Passwort für `/admin`
-   - `SIGNING_KEY` – langer Zufallswert (z. B. `openssl rand -hex 32`)
-   - `ICAL_TOKEN` – Zufallswert, Teil der geheimen Kalender-Adressen
-   - `RESEND_API_KEY` – aus resend.com; Absender-Domain dort verifizieren und `MAIL_FROM` in `wrangler.jsonc` anpassen
-   - `STRIPE_SECRET_KEY` – aus dem Stripe-Dashboard (zuerst Test-Key `sk_test_…`)
-   - `STRIPE_WEBHOOK_SECRET` – Stripe → Entwickler → Webhooks → Endpoint `https://<domain>/api/stripe/webhook`
-     mit den Events `checkout.session.completed` und `checkout.session.expired`
-   - `TURNSTILE_SECRET` – Cloudflare → Turnstile; den öffentlichen Site-Key als `TURNSTILE_SITE_KEY` in `wrangler.jsonc` eintragen
-5. In `/admin` eintragen: Preise, Mindestnächte, E-Mail des Vermieters, iCal-Export-Adressen von Booking.com und Airbnb.
-6. Die zwei Adressen aus `/admin` („Kalender-Abgleich") in Booking.com und Airbnb als Kalender-Import eintragen.
-7. GitHub Pages im Repo deaktivieren.
+## Smoobu einrichten (macht der Vermieter)
+1. Konto auf smoobu.com anlegen (14 Tage kostenlos testbar) und die Unterkunft anlegen.
+2. Unter „Portale" Booking.com und Airbnb verbinden. Ab dann gleicht Smoobu die Kalender in Echtzeit ab.
+3. Preise, Mindestaufenthalt und Endreinigung in Smoobu pflegen.
+4. Unter „Buchungssystem" den Zahlungsanbieter (Stripe oder PayPal) und die Buchungsbedingungen hinterlegen.
 
-## Ablauf einer Buchung
-Anfrage (Zeitraum vorgemerkt) → Vermieter bestätigt per Link in der E-Mail oder in `/admin` → Gast erhält Stripe-Zahlungslink (24 h) → nach Zahlung ist die Buchung fix.
-Unbeantwortete Anfragen verfallen nach 48 h, unbezahlte Bestätigungen nach 24 h. Bestätigte Buchungen erscheinen in den Kalender-Adressen für Booking.com und Airbnb.
+## Website verbinden
+1. In Smoobu: Einstellungen → Buchungssystem → „In Website einbetten". Im angezeigten Code steht eine Adresse der Form
+   `https://login.smoobu.com/de/booking-tool/iframe/<userId>/<apartmentId>`.
+2. Beide Zahlen in `site/js/smoobu-config.js` eintragen.
+3. `npm run deploy`.
+
+Solange `userId` leer ist, zeigt der Abschnitt „Verfügbarkeit & Buchung" nur einen Vorschau-Hinweis.
 
 ## Logo und Fotos
 - `python3 tools/build-logo.py` erzeugt aus `logo/image.png` die freigestellten Logos und Favicons.
 - `tools/build-images.sh` erzeugt die Fotos (Quelle: `images/`).
+
+Der Vergleich mit der kostenlosen Variante steht in `VARIANTEN.md`.

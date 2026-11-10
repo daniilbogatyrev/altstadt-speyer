@@ -252,53 +252,29 @@
       </div>
     </section>
 
-    <!-- BOOKING: availability calendar + request form (js/booking.js, API in worker/) -->
+    <!-- BOOKING: Smoobu booking engine (js/smoobu.js, IDs in js/smoobu-config.js) -->
     <section class="book" id="book">
       <div class="wrap">
         <h2 class="heading reveal" data-i18n="bk.title">Verfügbarkeit &amp; Buchung</h2>
         <ol class="book__steps reveal">
-          <li><span>1</span><span data-i18n="bk.s1">Zeitraum wählen und Anfrage senden</span></li>
-          <li><span>2</span><span data-i18n="bk.s2">Wir bestätigen in der Regel innerhalb von 24 Stunden</span></li>
-          <li><span>3</span><span data-i18n="bk.s3">Sicher online bezahlen – Ihre Buchung ist fix</span></li>
+          <li><span>1</span><span data-i18n="sm.s1">Zeitraum im Kalender wählen</span></li>
+          <li><span>2</span><span data-i18n="sm.s2">Ihre Daten eingeben</span></li>
+          <li><span>3</span><span data-i18n="sm.s3">Sicher online bezahlen – sofort bestätigt</span></li>
         </ol>
 
-        <div class="book__grid reveal" id="bk">
-          <div class="cal" id="cal">
-            <div class="cal__bar">
-              <button type="button" class="round cal__nav" id="cal-prev" data-i18n-aria="lb.prev" aria-label="Zurück">‹</button>
-              <button type="button" class="round cal__nav" id="cal-next" data-i18n-aria="lb.next" aria-label="Weiter">›</button>
-            </div>
-            <div class="cal__months" id="cal-months"></div>
-            <p class="cal__legend muted"><span class="cal__key cal__key--free"></span><span data-i18n="bk.free">frei</span><span class="cal__key cal__key--busy"></span><span data-i18n="bk.busy">belegt</span><span class="cal__key cal__key--sel"></span><span data-i18n="bk.chosen">Ihre Auswahl</span></p>
-            <p class="cal__hint" id="cal-hint" role="status"></p>
+        <div class="smoobu reveal" id="smoobu">
+          <!-- filled by js/smoobu.js: the Smoobu widget, or a preview note while no account is connected -->
+          <div class="smoobu__preview" id="smoobu-preview">
+            <p class="smoobu__tag" data-i18n="sm.tag">Vorschau</p>
+            <h3 data-i18n="sm.title">Hier erscheint das Buchungssystem.</h3>
+            <p data-i18n="sm.text">Sobald das Smoobu-Konto verbunden ist, sehen Gäste an dieser Stelle den Kalender mit freien Terminen und Preisen und können direkt buchen und bezahlen.</p>
+            <ul>
+              <li data-i18n="sm.f1">Freie Termine in Echtzeit, abgeglichen mit Booking.com und Airbnb</li>
+              <li data-i18n="sm.f2">Preis für den gewählten Zeitraum</li>
+              <li data-i18n="sm.f3">Sofortbuchung mit Online-Zahlung</li>
+            </ul>
           </div>
-
-          <form class="bform" id="bform" novalidate>
-            <div class="bform__dates">
-              <div><span class="bform__label" data-i18n="bk.checkin">Anreise</span><strong id="bk-in">–</strong></div>
-              <div><span class="bform__label" data-i18n="bk.checkout">Abreise</span><strong id="bk-out">–</strong></div>
-              <button type="button" class="link bform__reset" id="bk-reset" data-i18n="bk.reset" hidden>Zurücksetzen</button>
-            </div>
-            <div class="bform__price" id="bk-price"></div>
-
-            <label class="field"><span data-i18n="bk.guests">Gäste</span><select name="guests" id="bk-guests"><option>1</option><option selected>2</option></select></label>
-            <label class="field"><span data-i18n="bk.name">Vor- und Nachname</span><input name="name" autocomplete="name" required maxlength="120"></label>
-            <label class="field"><span data-i18n="bk.email">E-Mail</span><input name="email" type="email" autocomplete="email" required maxlength="200"></label>
-            <label class="field"><span data-i18n="bk.phone">Telefon (optional)</span><input name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
-            <label class="field"><span data-i18n="bk.message">Nachricht (optional)</span><textarea name="message" rows="3" maxlength="2000"></textarea></label>
-            <label class="field field--hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
-            <label class="check"><input type="checkbox" name="consent" required><span data-i18n-html="bk.consent">Ich akzeptiere die <a href="agb.html" target="_blank">AGB und Stornobedingungen</a> und habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen.</span></label>
-            <div id="bk-turnstile"></div>
-            <p class="bform__error" id="bk-error" role="alert" hidden></p>
-            <button type="submit" class="btn bform__submit" id="bk-submit"><span data-i18n="bk.submit">Unverbindlich anfragen</span></button>
-            <p class="muted bform__note" data-i18n="bk.note">Noch keine Zahlung. Sie bezahlen erst nach unserer Bestätigung.</p>
-          </form>
-
-          <div class="bdone" id="bk-done" hidden tabindex="-1">
-            <h3 data-i18n="bk.ok.title">Vielen Dank – Ihre Anfrage ist eingegangen.</h3>
-            <p data-i18n="bk.ok.text">Wir haben Ihnen eine Eingangsbestätigung per E-Mail geschickt und melden uns in der Regel innerhalb von 24 Stunden.</p>
-            <p class="muted" id="bk-done-id"></p>
-          </div>
+          <div id="smoobu-widget"></div>
         </div>
 
         <p class="book__alt muted reveal"><span data-i18n="bk.also">Auch buchbar über</span> <a class="link js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener">Booking.com ↗</a></p>
@@ -318,7 +294,6 @@
       </nav>
       <nav class="footer__col">
         <a class="js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener">Booking.com ↗</a>
-        <a href="agb.html" data-i18n="f.terms">AGB &amp; Storno</a>
         <a href="impressum.html" data-i18n="f.imprint">Impressum</a>
         <a href="datenschutz.html" data-i18n="f.privacy">Datenschutz</a>
       </nav>
@@ -340,6 +315,7 @@
   <script src="js/photos.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/booking.js"></script>
+  <script src="js/smoobu-config.js"></script>
+  <script src="js/smoobu.js"></script>
 </body>
 </html>

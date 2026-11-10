@@ -1,19 +1,11 @@
 {
-  "name": "altstadt-speyer",
+  "name": "altstadt-speyer-smoobu",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
-    "test": "vitest run",
-    "typecheck": "tsc --noEmit",
-    "db:local": "wrangler d1 execute altstadt-speyer --local --file worker/schema.sql",
-    "db:remote": "wrangler d1 execute altstadt-speyer --remote --file worker/schema.sql"
+    "deploy": "wrangler deploy"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261110.1",
-    "typescript": "^7.0.2",
-    "vitest": "^5.1.0",
     "wrangler": "^4.159.0"
   }
 }
