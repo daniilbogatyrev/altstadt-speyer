@@ -98,7 +98,9 @@ window.I18N = {
     "pay.ok.text": "Ihre Buchung ist damit verbindlich. Die Buchungsbestätigung erhalten Sie in wenigen Minuten per E-Mail.",
     "pay.cancel.title": "Die Zahlung wurde abgebrochen.",
     "pay.cancel.text": "Es wurde nichts abgebucht. Über den Link in unserer E-Mail können Sie die Zahlung jederzeit innerhalb der Frist nachholen.",
-    "pay.back": "Zur Startseite"
+    "pay.back": "Zur Startseite",
+    "hero.eyebrow": "Ferienwohnung · Holzmarkt 4 · Speyer",
+    "hero.cta": "Verfügbarkeit prüfen"
   },
 
   en: {
@@ -199,7 +201,9 @@ window.I18N = {
     "pay.ok.text": "Your booking is now binding. You will receive the booking confirmation by email within a few minutes.",
     "pay.cancel.title": "The payment was cancelled.",
     "pay.cancel.text": "Nothing was charged. You can complete the payment at any time within the deadline using the link in our email.",
-    "pay.back": "Back to the homepage"
+    "pay.back": "Back to the homepage",
+    "hero.eyebrow": "Holiday apartment · Holzmarkt 4 · Speyer",
+    "hero.cta": "Check availability"
   },
 
   fr: {
@@ -300,7 +304,9 @@ window.I18N = {
     "pay.ok.text": "Votre réservation est désormais ferme. Vous recevrez la confirmation par e-mail dans quelques minutes.",
     "pay.cancel.title": "Le paiement a été annulé.",
     "pay.cancel.text": "Rien n’a été débité. Vous pouvez finaliser le paiement à tout moment dans le délai via le lien de notre e-mail.",
-    "pay.back": "Retour à l’accueil"
+    "pay.back": "Retour à l’accueil",
+    "hero.eyebrow": "Appartement de vacances · Holzmarkt 4 · Spire",
+    "hero.cta": "Voir les disponibilités"
   },
 
   it: {
@@ -401,6 +407,8 @@ window.I18N = {
     "pay.ok.text": "La prenotazione è ora vincolante. Riceverete la conferma via e-mail entro pochi minuti.",
     "pay.cancel.title": "Il pagamento è stato annullato.",
     "pay.cancel.text": "Non è stato addebitato nulla. Potete completare il pagamento in qualsiasi momento entro il termine tramite il link nella nostra e-mail.",
-    "pay.back": "Torna alla home"
+    "pay.back": "Torna alla home",
+    "hero.eyebrow": "Appartamento vacanze · Holzmarkt 4 · Spira",
+    "hero.cta": "Verifica la disponibilità"
   }
 };
