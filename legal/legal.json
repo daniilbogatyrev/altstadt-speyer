@@ -1,0 +1,23 @@
+{
+  "_hinweis": "Betreiberdaten und eingesetzte Dienste. Werte in eckigen Klammern sind noch offen. Danach: python3 tools/build-legal.py",
+  "operator": {
+    "name": "[Vor- und Nachname des Vermieters]",
+    "street": "[Straße und Hausnummer]",
+    "zip_city": "[PLZ und Ort]",
+    "country": "Deutschland",
+    "email": "[E-Mail-Adresse]",
+    "phone": "[Telefonnummer]",
+    "vat_id": "",
+    "small_business": false,
+    "supervisory_authority": "Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz, Hintere Bleiche 34, 55116 Mainz, www.datenschutz.rlp.de",
+    "photo_credit": "[Fotograf bzw. Rechteinhaber der Fotos]"
+  },
+  "services": {
+    "stripe": false,
+    "resend": false,
+    "turnstile": false,
+    "smoobu": true
+  },
+  "retention_months_requests": 12,
+  "stand": "November 2026"
+}

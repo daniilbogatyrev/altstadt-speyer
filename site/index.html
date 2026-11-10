@@ -21,11 +21,10 @@
   <meta property="og:description" content="Verborgen, doch mitten in Speyer. Direkt buchen.">
   <meta property="og:image" content="https://test.dbogatyrev.com/img/hof/01.webp">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <script>(function(){var t=null;try{t=localStorage.getItem("altstadt-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";document.documentElement.setAttribute("data-theme",t)})();</script>
-<link rel="stylesheet" href="css/style.css">
+<link rel="preload" href="fonts/instrument-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/instrument-sans-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
 
   <script type="application/ld+json">
   {
@@ -361,6 +360,10 @@
               <li data-i18n="sm.f3">Sofortbuchung mit Online-Zahlung</li>
             </ul>
           </div>
+          <div class="smoobu__gate" id="smoobu-gate">
+            <p data-i18n-html="sm.gate.text">Zum Buchen wird das Buchungssystem von Smoobu geladen. Dabei werden Daten wie Ihre IP-Adresse an Smoobu übertragen. Mehr dazu in der <a href="datenschutz.html" data-legal="datenschutz" target="_blank">Datenschutzerklärung</a>.</p>
+            <button type="button" class="btn" id="smoobu-load" data-i18n="sm.gate.btn">Buchungssystem laden</button>
+          </div>
           <div id="smoobu-widget"></div>
         </div>
 
@@ -381,8 +384,8 @@
       </nav>
       <nav class="footer__col">
         <a class="js-book" href="https://www.booking.com/hotel/de/altstadt-speyer.de.html" target="_blank" rel="noopener">Booking.com ↗</a>
-        <a href="impressum.html" data-i18n="f.imprint">Impressum</a>
-        <a href="datenschutz.html" data-i18n="f.privacy">Datenschutz</a>
+        <a href="impressum.html" data-legal="impressum" data-i18n="f.imprint">Impressum</a>
+        <a href="datenschutz.html" data-legal="datenschutz" data-i18n="f.privacy">Datenschutz</a>
       </nav>
     </div>
     <div class="wrap footer__copy">© <span id="year">2026</span> FeWo Altstadt Speyer</div>

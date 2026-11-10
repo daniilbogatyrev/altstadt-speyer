@@ -4,6 +4,11 @@
    White page, black type and black buttons as the elegant accent.
    ========================================================================== */
 
+/* Instrument Sans (SIL OFL), served from this site; see fonts/OFL.txt */
+@font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/instrument-sans-400.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/instrument-sans-500.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/instrument-sans-600.woff2") format("woff2"); }
+
 :root {
   --bg: #FFFFFF;
   --surface: #F6F3EC;
@@ -243,7 +248,11 @@ address { font-style: normal; }
 .book__alt { text-align: center; margin-top: 44px; font-size: 15px; }
 
 .smoobu { background: var(--bg); margin: 52px auto 0; max-width: 980px; padding: clamp(20px, 3vw, 40px); }
-.smoobu.is-live .smoobu__preview { display: none; }
+.smoobu.is-live .smoobu__preview, .smoobu.is-gated .smoobu__preview { display: none; }
+.smoobu__gate { display: none; text-align: center; border: 1px dashed var(--faint); padding: clamp(28px, 4vw, 56px); }
+.smoobu.is-gated .smoobu__gate { display: block; }
+.smoobu__gate p { max-width: 56ch; margin: 0 auto 24px; }
+.smoobu__gate a { text-decoration: underline; text-underline-offset: 3px; }
 .smoobu iframe { width: 100%; border: 0; display: block; min-height: 640px; }
 .smoobu__preview { border: 1px dashed var(--faint); padding: clamp(24px, 4vw, 56px); text-align: center; }
 .smoobu__tag { display: inline-block; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; border: 1px solid var(--ink); padding: 3px 10px; margin-bottom: 20px; }
@@ -344,6 +353,16 @@ body.is-switching [data-i18n] { opacity: 0; }
 .utab[aria-selected="true"] { border-color: var(--ink); box-shadow: inset 0 -2px 0 var(--gold); }
 .utab__name { font-size: 15px; font-weight: 500; letter-spacing: .04em; }
 .utab__price { font-size: 13px; color: var(--muted); }
+
+/* legal pages */
+.legal__nav { margin: 36px 0 8px; font-size: 14px; color: var(--muted); }
+.legal h1 { font-size: clamp(28px, 3.2vw, 40px); font-weight: 500; line-height: 1.15; margin: 28px 0 24px; }
+.legal h2 { margin-top: 40px; }
+.legal ul { margin: 0 0 14px 1.3em; list-style: disc; }
+.legal li { margin-bottom: 6px; }
+.legal code { font-size: .9em; background: var(--surface); padding: 1px 6px; }
+.legal p { max-width: 70ch; }
+.todo { background: #ffe58a; color: #111; padding: 0 4px; }
 
 /* ---------- dark mode: night blue, taken from the logo background ---------- */
 :root[data-theme="dark"] {

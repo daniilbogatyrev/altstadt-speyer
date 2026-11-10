@@ -10,7 +10,7 @@
   var LANGS = ["de", "en", "fr", "it"];
   var LOCALE = { de: "de-DE", en: "en-GB", fr: "fr-FR", it: "it-IT" };
   var unit = apts[window.SELECTED_UNIT] ? window.SELECTED_UNIT : "superior";
-  var scriptLoaded = null;
+  var scriptLoaded = null, accepted = false; // consent lives only in memory for this page view
 
   function lang() { return LANGS.indexOf(document.documentElement.lang) > -1 ? document.documentElement.lang : "de"; }
   function t(k) { var d = window.I18N[lang()] || window.I18N.de; return d[k] != null ? d[k] : k; }
@@ -40,7 +40,9 @@
     renderTabs();
     var a = apts[unit];
     target.innerHTML = "";
-    if (!cfg.userId || !a || !a.id) { box.classList.remove("is-live"); return; }
+    box.classList.remove("is-live", "is-gated");
+    if (!cfg.userId || !a || !a.id) return;                 // not connected yet: preview note
+    if (!accepted) { box.classList.add("is-gated"); return; } // nothing is requested from Smoobu before the click
     var url = BASE + "/" + lang() + "/booking-tool/iframe/" + encodeURIComponent(cfg.userId) + "/" + encodeURIComponent(a.id);
     loadScript().then(function () {
       window.BookingToolIframe.initialize({ url: url, baseUrl: BASE, target: "#smoobu-widget" });
@@ -53,6 +55,8 @@
     if (b && b.getAttribute("data-u") !== unit) { unit = b.getAttribute("data-u"); render(); }
   });
   document.addEventListener("selectunit", function (e) { if (apts[e.detail] && e.detail !== unit) { unit = e.detail; render(); } });
+  var loadBtn = document.getElementById("smoobu-load");
+  if (loadBtn) loadBtn.addEventListener("click", function () { accepted = true; render(); });
   document.addEventListener("langchange", render);
   render();
 })();

@@ -9,6 +9,11 @@
   var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function t(k) { return (dict && dict[k]) || k; }
+  // legal pages exist in German and English: German visitors get German, everyone else English
+  function legalLinks() {
+    var suffix = document.documentElement.lang === "de" ? "" : "-en";
+    $$("[data-legal]").forEach(function (a) { a.setAttribute("href", a.getAttribute("data-legal") + suffix + ".html"); });
+  }
   // {score} / {count} in texts come from js/reviews-config.js
   function fill(v) {
     var r = window.REVIEWS || {}, score = String(r.score || "");
@@ -70,6 +75,7 @@
 
     sliders.forEach(function (s) { s.relabel(); });
     syncThemeBtn();
+    legalLinks();
     document.dispatchEvent(new CustomEvent("langchange", { detail: lang }));
   }
 
