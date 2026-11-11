@@ -10,6 +10,7 @@
        text: "Der Text der Bewertung, möglichst kurz (1–3 Sätze).",
        author: "Anna",              // nur Vorname oder Initial, kein Nachname
        country: "Deutschland",
+       stay: "Superior Apartment · 2 Nächte",   // optional
        date: "Oktober 2025",
        source: "Booking.com",       // oder "Google"
        rating: "10/10",             // optional, z. B. "10/10" oder "5/5"
@@ -32,6 +33,9 @@ window.REVIEWS = {
       author: "Dimi", date: "Oktober 2026", source: "Booking.com", rating: "10/10", lang: "de" },
     { title: "Außergewöhnlich",
       text: "Die kreative, romantische und hochwertige Einrichtung der Zimmer; sehr zentral gelegen, netter Email-Kontakt mit Vermieterin",
-      author: "Heidrun", date: "Oktober 2026", source: "Booking.com", rating: "10/10", lang: "de" }
+      author: "Heidrun", date: "Oktober 2026", source: "Booking.com", rating: "10/10", lang: "de" },
+    { title: "Supertolles Apartment mit absolut engagierter Vermieterin - einfach klasse!",
+      text: "Wir waren während des Altstadtfestes in der Unterkunft […] da die Fenster qualitativ sehr hochwertig sind und wir somit die Nachtruhe genießen konnten. Hervorheben möchten wir, dass Natalie, die Gastgeberin super hilfsbereit war. […] Wir können uns nur ganz herzlich bei ihr bedanken für den wirklich perfekten Aufenthalt!",
+      author: "Alexandra", country: "Deutschland", stay: "Superior Apartment · 2 Nächte", date: "September 2025", source: "Booking.com", rating: "10/10", lang: "de" }
   ]
 };

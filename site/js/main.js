@@ -313,7 +313,7 @@
       var bq = el("blockquote", null, it.text); if (it.lang) bq.setAttribute("lang", it.lang);
       var cap = el("figcaption");
       var who = [it.author, it.country].filter(Boolean).join(", ");
-      var meta = [it.date, it.rating].filter(Boolean).join(" · ");
+      var meta = [it.stay, it.date, it.rating].filter(Boolean).join(" · ");
       if (who) cap.appendChild(el("span", "rcar__who", who));
       if (meta) cap.appendChild(el("span", "rcar__meta", meta));
       if (it.source) cap.appendChild(el("span", "rcar__src", it.source));
