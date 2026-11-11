@@ -15,7 +15,7 @@ export interface UnitSettings {
   max_nights: number;
   base_guests: number;          // included in the nightly price
   max_guests: number;           // including extra beds
-  extra_guest_cents: number;    // per extra guest and night (0 until the owner names a price)
+  extra_guest_cents: number;    // per extra guest (extra bed) and night
   seasons: Season[];
   ical_booking_url: string;
   ical_airbnb_url: string;
@@ -34,7 +34,7 @@ export const UNIT_DEFAULTS: UnitSettings = {
   max_nights: 28,
   base_guests: 2,
   max_guests: 2,                // raise once the number of extra beds is decided
-  extra_guest_cents: 0,
+  extra_guest_cents: 5000,      // extra bed: 50 EUR per night (only applies once max_guests > base_guests)
   seasons: [],
   ical_booking_url: "",
   ical_airbnb_url: "",

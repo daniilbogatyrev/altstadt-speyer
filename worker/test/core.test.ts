@@ -44,7 +44,9 @@ describe("pricing", () => {
     expect(validateStay("2027-05-01", "2027-05-04", 4, U, MA, "2027-01-10", [])).toBeNull();
     expect(validateStay("2027-05-01", "2027-05-04", 5, U, MA, "2027-01-10", [])).toBe("guests");
   });
-  it("defaults to 125 EUR per night for both apartments", () => {
+  it("defaults to 125 EUR per night and 50 EUR per extra bed and night", () => {
+    expect(DEFAULTS.units.superior.extra_guest_cents).toBe(5000);
+    expect(DEFAULTS.units.deluxe.extra_guest_cents).toBe(5000);
     expect(DEFAULTS.units.superior.nightly_cents).toBe(12500);
     expect(DEFAULTS.units.deluxe.nightly_cents).toBe(12500);
   });

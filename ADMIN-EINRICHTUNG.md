@@ -20,7 +20,7 @@ Eine lange Passphrase wählen (mindestens 16 Zeichen) und an der Eingabeaufforde
 Im Abschnitt „Preise und Einstellungen", getrennt für **Superior** und **Deluxe**:
 - Preis pro Nacht: 125 € ist voreingestellt
 - Endreinigung und Mindestnächte: aktuell Platzhalter (40 € / 2 Nächte), mit dem Kunden klären
-- Gäste im Preis enthalten (2), maximale Gäste inklusive Zustellbett, Aufpreis je Zusatzgast und Nacht (0 €), sobald der Kunde die Zahlen nennt
+- Gäste im Preis enthalten (2), maximale Gäste inklusive Zustellbett, Aufpreis je Zusatzgast bzw. Zustellbett und Nacht (50 € voreingestellt, gilt erst, wenn die maximale Gästezahl über den im Preis enthaltenen Gästen liegt; der Kunde nennt die Zahl)
 - Saisonpreise (optional)
 - **E-Mail des Vermieters:** hierhin gehen alle Anfragen. Ohne sie bleibt die Seite wirkungslos.
 

@@ -111,19 +111,20 @@ window.I18N = {
     "apt.intro": "Zwei Apartments mitten in der Altstadt – wählen Sie das passende für Ihren Aufenthalt.",
     "apt.sup.beds": "1 Doppelbett",
     "apt.del.beds": "1 Doppelbett + 1 Schlafsofa",
-    "apt.guests": "2 Gäste · Zustellbetten auf Anfrage",
+    "apt.guests": "2 Gäste · Zustellbett auf Anfrage (50 € pro Nacht)",
     "apt.sup.text": "Ideal für zwei: ein Doppelbett, eine Küche, ein eigenes Bad – und der verwunschene Innenhof vor der Tür.",
     "apt.del.text": "Mehr Flexibilität: Doppelbett plus Schlafsofa, Küche und eigenes Bad – auf Anfrage auch mit Zustellbett für zusätzliche Gäste.",
     "apt.note": "Die Fotos zeigen beide Apartments; die Einrichtung kann im Detail abweichen.",
     "a.5": "Doppelbett (Deluxe zusätzlich Schlafsofa)",
-    "r.guests": "2 Personen pro Apartment, Zustellbetten auf Anfrage",
+    "r.guests": "2 Personen pro Apartment, Zustellbett auf Anfrage (50 € pro Nacht)",
     "rv.title": "Bewertungen",
     "rv.sub": "Gesamtbewertung unserer Gäste",
     "rv.booking": "Alle Bewertungen auf Booking.com",
     "rv.google": "Bewertungen auf Google",
     "bk.extra": "Zusatzgäste ({n})",
     "rv.region": "Gästebewertungen",
-    "rv.demo": "Demo-Ansicht mit Platzhaltertexten – hier erscheinen später echte Gästebewertungen."
+    "rv.demo": "Demo-Ansicht mit Platzhaltertexten – hier erscheinen später echte Gästebewertungen.",
+    "bk.extrabed": "Zustellbett gewünscht? 50 € pro Nacht – bitte in der Nachricht angeben."
   },
 
   en: {
@@ -237,19 +238,20 @@ window.I18N = {
     "apt.intro": "Two apartments in the heart of the old town – choose the one that suits your stay.",
     "apt.sup.beds": "1 double bed",
     "apt.del.beds": "1 double bed + 1 sofa bed",
-    "apt.guests": "2 guests · extra beds on request",
+    "apt.guests": "2 guests · extra bed on request (€50 per night)",
     "apt.sup.text": "Ideal for two: a double bed, a kitchen, a private bathroom – and the enchanted courtyard on your doorstep.",
     "apt.del.text": "More flexibility: double bed plus sofa bed, kitchen and private bathroom – on request also with an extra bed for additional guests.",
     "apt.note": "The photos show both apartments; the furnishings may differ in detail.",
     "a.5": "Double bed (Deluxe also with sofa bed)",
-    "r.guests": "2 guests per apartment, extra beds on request",
+    "r.guests": "2 guests per apartment, extra bed on request (€50 per night)",
     "rv.title": "Reviews",
     "rv.sub": "Overall rating from our guests",
     "rv.booking": "All reviews on Booking.com",
     "rv.google": "Reviews on Google",
     "bk.extra": "Extra guests ({n})",
     "rv.region": "Guest reviews",
-    "rv.demo": "Demo view with placeholder texts – real guest reviews will appear here later."
+    "rv.demo": "Demo view with placeholder texts – real guest reviews will appear here later.",
+    "bk.extrabed": "Need an extra bed? €50 per night – please mention it in your message."
   },
 
   fr: {
@@ -363,19 +365,20 @@ window.I18N = {
     "apt.intro": "Deux appartements au cœur de la vieille ville – choisissez celui qui convient à votre séjour.",
     "apt.sup.beds": "1 lit double",
     "apt.del.beds": "1 lit double + 1 canapé-lit",
-    "apt.guests": "2 personnes · lits d’appoint sur demande",
+    "apt.guests": "2 personnes · lit d’appoint sur demande (50 € par nuit)",
     "apt.sup.text": "Idéal pour deux : un lit double, une cuisine, une salle de bains privée – et la cour enchantée au pas de la porte.",
     "apt.del.text": "Plus de flexibilité : lit double et canapé-lit, cuisine et salle de bains privée – sur demande aussi avec lit d’appoint pour des personnes supplémentaires.",
     "apt.note": "Les photos montrent les deux appartements ; l’aménagement peut différer dans les détails.",
     "a.5": "Lit double (Deluxe avec canapé-lit en plus)",
-    "r.guests": "2 personnes par appartement, lits d’appoint sur demande",
+    "r.guests": "2 personnes par appartement, lit d’appoint sur demande (50 € par nuit)",
     "rv.title": "Avis",
     "rv.sub": "Note globale de nos voyageurs",
     "rv.booking": "Tous les avis sur Booking.com",
     "rv.google": "Avis sur Google",
     "bk.extra": "Personnes supplémentaires ({n})",
     "rv.region": "Avis des voyageurs",
-    "rv.demo": "Aperçu avec des textes provisoires – de vrais avis de voyageurs apparaîtront ici plus tard."
+    "rv.demo": "Aperçu avec des textes provisoires – de vrais avis de voyageurs apparaîtront ici plus tard.",
+    "bk.extrabed": "Besoin d’un lit d’appoint ? 50 € par nuit – merci de l’indiquer dans votre message."
   },
 
   it: {
@@ -489,18 +492,19 @@ window.I18N = {
     "apt.intro": "Due appartamenti nel cuore del centro storico – scegliete quello più adatto al vostro soggiorno.",
     "apt.sup.beds": "1 letto matrimoniale",
     "apt.del.beds": "1 letto matrimoniale + 1 divano letto",
-    "apt.guests": "2 ospiti · letti aggiuntivi su richiesta",
+    "apt.guests": "2 ospiti · letto aggiuntivo su richiesta (50 € a notte)",
     "apt.sup.text": "Ideale per due: un letto matrimoniale, una cucina, un bagno privato – e lo stupendo cortile davanti alla porta.",
     "apt.del.text": "Più flessibilità: letto matrimoniale e divano letto, cucina e bagno privato – su richiesta anche con letto aggiuntivo per altri ospiti.",
     "apt.note": "Le foto mostrano entrambi gli appartamenti; l’arredamento può differire nei dettagli.",
     "a.5": "Letto matrimoniale (Deluxe anche con divano letto)",
-    "r.guests": "2 ospiti per appartamento, letti aggiuntivi su richiesta",
+    "r.guests": "2 ospiti per appartamento, letto aggiuntivo su richiesta (50 € a notte)",
     "rv.title": "Recensioni",
     "rv.sub": "Valutazione complessiva dei nostri ospiti",
     "rv.booking": "Tutte le recensioni su Booking.com",
     "rv.google": "Recensioni su Google",
     "bk.extra": "Ospiti aggiuntivi ({n})",
     "rv.region": "Recensioni degli ospiti",
-    "rv.demo": "Anteprima con testi segnaposto – qui appariranno in seguito vere recensioni degli ospiti."
+    "rv.demo": "Anteprima con testi segnaposto – qui appariranno in seguito vere recensioni degli ospiti.",
+    "bk.extrabed": "Serve un letto aggiuntivo? 50 € a notte – indicatelo nel messaggio."
   }
 };

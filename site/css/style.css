@@ -285,6 +285,7 @@ address { font-style: normal; }
 .field input, .field select, .field textarea { width: 100%; font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--field-border); border-radius: 0; padding: 11px 12px; transition: border-color .2s; }
 .field textarea { resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--ink); }
+.field__hint { font-size: 13px; margin: -6px 0 14px; }
 .field--hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; margin: 18px 0; }
 .check input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--btn-bg); flex: none; }

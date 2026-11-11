@@ -1,18 +1,23 @@
 {
   "_hinweis": "Betreiberdaten und eingesetzte Dienste. Werte in eckigen Klammern sind noch offen. Danach: python3 tools/build-legal.py",
   "operator": {
-    "name": "[Vor- und Nachname des Vermieters]",
-    "street": "[Straße und Hausnummer]",
-    "zip_city": "[PLZ und Ort]",
+    "name": "Vedran und Natalija Tesic",
+    "street": "Holzmarkt 4",
+    "zip_city": "67346 Speyer",
     "country": "Deutschland",
-    "email": "[E-Mail-Adresse]",
-    "phone": "[Telefonnummer]",
+    "email": "fewoas@gmail.com",
+    "phone": "+49 152 23680082",
     "vat_id": "",
     "small_business": false,
     "supervisory_authority": "Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz, Hintere Bleiche 34, 55116 Mainz, www.datenschutz.rlp.de",
-    "photo_credit": "[Fotograf bzw. Rechteinhaber der Fotos]"
+    "photo_credit": "Vedran und Natalija Tesic"
   },
-  "services": { "stripe": true, "resend": true, "turnstile": true, "smoobu": false },
+  "services": {
+    "stripe": true,
+    "resend": true,
+    "turnstile": true,
+    "smoobu": false
+  },
   "retention_months_requests": 12,
   "stand": "November 2026"
 }
