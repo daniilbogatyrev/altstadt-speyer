@@ -23,6 +23,12 @@ npm run dev             # http://localhost:8787
 
 Solange `userId` leer ist, zeigt der Abschnitt „Verfügbarkeit & Buchung" nur einen Vorschau-Hinweis.
 
+## Seite bearbeiten (Sprachseiten, SEO)
+Die Quelle ist `src/index.html` (deutsche Vorlage mit `data-i18n`-Attributen), die Texte stehen in `site/js/i18n.js`.
+`python3 tools/build-lang.py` erzeugt daraus `site/index.html`, `site/en/`, `site/fr/`, `site/it/`, `sitemap.xml`, `robots.txt` und `img/og.jpg`.
+**Nie** die Dateien in `site/` von Hand ändern, sie werden überschrieben.
+Die Adresse und der Indexier-Schalter stehen in `tools/seo.json`: Beim Livegang `site_url` auf die echte Domain setzen und `indexable` auf `true`, dann neu bauen und deployen.
+
 ## Logo und Fotos
 - `python3 tools/build-logo.py` erzeugt aus `logo/image.png` die freigestellten Logos und Favicons.
 - `tools/build-images.sh` erzeugt die Fotos (Quelle: `images/`).

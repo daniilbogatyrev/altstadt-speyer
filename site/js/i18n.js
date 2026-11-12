@@ -85,7 +85,19 @@ window.I18N = {
     "sm.gate.text": "Zum Buchen wird das Buchungssystem von Smoobu geladen. Dabei werden Daten wie Ihre IP-Adresse an Smoobu übertragen. Mehr dazu in der <a href=\"datenschutz.html\" data-legal=\"datenschutz\" target=\"_blank\">Datenschutzerklärung</a>.",
     "sm.gate.btn": "Buchungssystem laden",
     "rv.region": "Gästebewertungen",
-    "rv.demo": "Demo-Ansicht mit Platzhaltertexten – hier erscheinen später echte Gästebewertungen."
+    "rv.demo": "Demo-Ansicht mit Platzhaltertexten – hier erscheinen später echte Gästebewertungen.",
+    "alt.hero1": "Wohnbereich mit Backsteinwand und Sofa in der Ferienwohnung am Holzmarkt in Speyer",
+    "alt.hero2": "Schlafzimmer unter dem Rundbogen mit Doppelbett",
+    "alt.wohnen": "Wohn- und Küchenbereich unter historischem Backstein",
+    "alt.schlafen": "Schlafzimmer mit Doppelbett und warmem Licht",
+    "alt.hof": "Gepflasterter Innenhof mit Sandsteinbögen und Pflanzen",
+    "alt.sup": "Schlafzimmer des Superior Apartments mit Doppelbett",
+    "alt.del": "Wohnbereich des Deluxe Apartments mit Schlafsofa",
+    "alt.aerial": "Luftbild: Kaiserdom und Ferienwohnung in der Altstadt von Speyer",
+    "alt.st1": "Skizze des Wegs vom Haus zu den Garagen",
+    "alt.st2": "Garage Nr. 9 und Nr. 10",
+    "alt.st3": "Schlüsselsafe neben der Haustür",
+    "alt.st4": "Willkommen im Apartment: Schlüssel und Ortsplan"
   },
 
   en: {
@@ -173,7 +185,19 @@ window.I18N = {
     "sm.gate.text": "To book, the booking system from Smoobu is loaded. Data such as your IP address is transferred to Smoobu. More in the <a href=\"datenschutz.html\" data-legal=\"datenschutz\" target=\"_blank\">privacy policy</a>.",
     "sm.gate.btn": "Load booking system",
     "rv.region": "Guest reviews",
-    "rv.demo": "Demo view with placeholder texts – real guest reviews will appear here later."
+    "rv.demo": "Demo view with placeholder texts – real guest reviews will appear here later.",
+    "alt.hero1": "Living area with brick wall and sofa in the holiday apartment on Holzmarkt in Speyer",
+    "alt.hero2": "Bedroom under the round arch with a double bed",
+    "alt.wohnen": "Living and kitchen area under historic brickwork",
+    "alt.schlafen": "Bedroom with double bed and warm light",
+    "alt.hof": "Paved courtyard with sandstone arches and plants",
+    "alt.sup": "Bedroom of the Superior Apartment with double bed",
+    "alt.del": "Living area of the Deluxe Apartment with sofa bed",
+    "alt.aerial": "Aerial view: Speyer Cathedral and the apartment in the old town",
+    "alt.st1": "Sketch of the way from the house to the garages",
+    "alt.st2": "Garage no. 9 and no. 10",
+    "alt.st3": "Key safe next to the front door",
+    "alt.st4": "Welcome to the apartment: key and city map"
   },
 
   fr: {
@@ -261,7 +285,19 @@ window.I18N = {
     "sm.gate.text": "Pour réserver, le système de réservation de Smoobu est chargé. Des données telles que votre adresse IP sont alors transmises à Smoobu. Plus d’informations dans la <a href=\"datenschutz.html\" data-legal=\"datenschutz\" target=\"_blank\">politique de confidentialité</a>.",
     "sm.gate.btn": "Charger le système de réservation",
     "rv.region": "Avis des voyageurs",
-    "rv.demo": "Aperçu avec des textes provisoires – de vrais avis de voyageurs apparaîtront ici plus tard."
+    "rv.demo": "Aperçu avec des textes provisoires – de vrais avis de voyageurs apparaîtront ici plus tard.",
+    "alt.hero1": "Séjour avec mur de briques et canapé dans l’appartement de vacances au Holzmarkt à Spire",
+    "alt.hero2": "Chambre sous l’arc en plein cintre avec lit double",
+    "alt.wohnen": "Séjour et cuisine sous des briques historiques",
+    "alt.schlafen": "Chambre avec lit double et lumière chaude",
+    "alt.hof": "Cour pavée avec arcades en grès et plantes",
+    "alt.sup": "Chambre de l’appartement Superior avec lit double",
+    "alt.del": "Séjour de l’appartement Deluxe avec canapé-lit",
+    "alt.aerial": "Vue aérienne : la cathédrale de Spire et l’appartement dans la vieille ville",
+    "alt.st1": "Croquis du chemin entre la maison et les garages",
+    "alt.st2": "Garages n° 9 et n° 10",
+    "alt.st3": "Boîte à clés à côté de la porte",
+    "alt.st4": "Bienvenue dans l’appartement : clé et plan de la ville"
   },
 
   it: {
@@ -349,6 +385,18 @@ window.I18N = {
     "sm.gate.text": "Per prenotare viene caricato il sistema di prenotazione di Smoobu. Vengono trasmessi a Smoobu dati come il vostro indirizzo IP. Maggiori informazioni nell’<a href=\"datenschutz.html\" data-legal=\"datenschutz\" target=\"_blank\">informativa sulla privacy</a>.",
     "sm.gate.btn": "Carica il sistema di prenotazione",
     "rv.region": "Recensioni degli ospiti",
-    "rv.demo": "Anteprima con testi segnaposto – qui appariranno in seguito vere recensioni degli ospiti."
+    "rv.demo": "Anteprima con testi segnaposto – qui appariranno in seguito vere recensioni degli ospiti.",
+    "alt.hero1": "Soggiorno con parete in mattoni e divano nell’appartamento vacanze al Holzmarkt a Spira",
+    "alt.hero2": "Camera da letto sotto l’arco a tutto sesto con letto matrimoniale",
+    "alt.wohnen": "Zona giorno e cucina sotto mattoni storici",
+    "alt.schlafen": "Camera da letto con letto matrimoniale e luce calda",
+    "alt.hof": "Cortile lastricato con archi in arenaria e piante",
+    "alt.sup": "Camera dell’appartamento Superior con letto matrimoniale",
+    "alt.del": "Soggiorno dell’appartamento Deluxe con divano letto",
+    "alt.aerial": "Veduta aerea: la cattedrale di Spira e l’appartamento nel centro storico",
+    "alt.st1": "Schizzo del percorso dalla casa ai garage",
+    "alt.st2": "Garage n. 9 e n. 10",
+    "alt.st3": "Cassetta di sicurezza per le chiavi accanto alla porta",
+    "alt.st4": "Benvenuti nell’appartamento: chiave e mappa della città"
   }
 };

@@ -31,18 +31,19 @@
   }
 
   /* ---------- language ---------- */
+  // Every language has its own page (/, /en/, /fr/, /it/); the language is the one of the page.
+  function pathFor(lang) { return lang === "de" ? "/" : "/" + lang + "/"; }
   function detectLang() {
-    var q = new URLSearchParams(location.search).get("lang");
-    if (q && LANGS.indexOf(q) > -1) return q;
-    var s = store();
-    if (s && LANGS.indexOf(s) > -1) return s;
-    var nav = navigator.languages || [navigator.language || "de"];
-    for (var i = 0; i < nav.length; i++) {
-      var code = String(nav[i]).slice(0, 2).toLowerCase();
-      if (LANGS.indexOf(code) > -1) return code;
-    }
-    return "de";
+    var l = document.documentElement.lang;
+    return LANGS.indexOf(l) > -1 ? l : "de";
   }
+  // Old links (?lang=xx) and visitors who chose a language before are sent to the matching page.
+  (function redirectLegacy() {
+    if (detectLang() !== "de" || !/^\/(index\.html)?$/.test(location.pathname)) return;
+    var q = new URLSearchParams(location.search).get("lang");
+    var want = q && LANGS.indexOf(q) > -1 ? q : (q ? null : store());
+    if (want && want !== "de" && LANGS.indexOf(want) > -1) location.replace(pathFor(want) + location.hash);
+  })();
 
   function apply(lang) {
     dict = window.I18N[lang];
@@ -69,25 +70,20 @@
     var href = BOOKING_BASE + dict._booking + ".html" + BOOKING_QUERY;
     $$(".js-book").forEach(function (a) { a.href = href; });
 
-    $$("button[data-lang]").forEach(function (b) {
-      b.setAttribute("aria-current", b.getAttribute("data-lang") === lang ? "true" : "false");
+    $$("[data-i18n-alt]").forEach(function (el) {
+      var v = dict[el.getAttribute("data-i18n-alt")];
+      if (v != null) el.setAttribute("alt", v);
+    });
+    $$("a[data-lang]").forEach(function (b) {
+      var l = b.getAttribute("data-lang");
+      b.setAttribute("href", pathFor(l));
+      b.setAttribute("aria-current", l === lang ? "true" : "false");
     });
 
     sliders.forEach(function (s) { s.relabel(); });
     syncThemeBtn();
     legalLinks();
     document.dispatchEvent(new CustomEvent("langchange", { detail: lang }));
-  }
-
-  function switchLang(lang) {
-    if (lang === document.documentElement.lang) return;
-    store(lang);
-    var url = new URL(location.href);
-    url.searchParams.set("lang", lang);
-    history.replaceState(null, "", url);
-    if (reduceMotion) return apply(lang);
-    document.body.classList.add("is-switching");
-    setTimeout(function () { apply(lang); document.body.classList.remove("is-switching"); }, 300);
   }
 
   /* ---------- sliders (rooms) ---------- */
@@ -100,7 +96,7 @@
 
     root.innerHTML = photos.map(function (p, i) {
         return '<button type="button" class="slider__slide" data-lb="room-' + cat + '" data-lb-src="' + p.src + '">' +
-          '<img src="' + p.src + '" alt="" ' + (i === 0 ? "" : 'loading="lazy" ') + 'width="' + p.w + '" height="' + p.h + '"></button>';
+          '<img src="' + p.src + '" alt="' + t("cat." + cat) + ' ' + (i + 1) + '" ' + (i === 0 ? "" : 'loading="lazy" ') + 'width="' + p.w + '" height="' + p.h + '"></button>';
       }).join("") +
       (n > 1 ? '<button type="button" class="round round--prev" data-i18n-aria="lb.prev" aria-label="Zurück">‹</button>' +
                '<button type="button" class="round round--next" data-i18n-aria="lb.next" aria-label="Weiter">›</button>' +
@@ -372,8 +368,8 @@
   /* ---------- init ---------- */
   applyTheme(currentTheme(), false);
   apply(detectLang());
-  $$("button[data-lang]").forEach(function (b) {
-    b.addEventListener("click", function () { switchLang(b.getAttribute("data-lang")); });
+  $$("a[data-lang]").forEach(function (b) {
+    b.addEventListener("click", function () { store(b.getAttribute("data-lang")); });
   });
 
   // reveal on scroll, staggered per parent

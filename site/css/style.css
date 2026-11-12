@@ -114,9 +114,9 @@ address { font-style: normal; }
 .nav a:hover::after { right: 0; }
 .header__right { display: flex; align-items: center; justify-content: flex-end; gap: 22px; }
 .lang { display: flex; gap: 2px; }
-.lang button { font-size: 12px; letter-spacing: .06em; padding: 6px 5px; color: var(--muted); transition: color .2s; }
-.lang button:hover { color: var(--text); }
-.lang button[aria-current="true"] { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
+.lang a { display: inline-block; font-size: 12px; letter-spacing: .06em; padding: 6px 5px; color: var(--muted); transition: color .2s; }
+.lang a:hover { color: var(--text); }
+.lang a[aria-current="true"] { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
 
 .burger { display: none; width: 40px; height: 40px; place-items: center; }
 .burger__lines { width: 22px; height: 9px; position: relative; display: block; }
@@ -131,7 +131,7 @@ address { font-style: normal; }
 .menu[hidden] { display: none; }
 .menu__nav { display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .menu__nav a { font-size: 30px; letter-spacing: .02em; }
-.lang--menu button { font-size: 14px; padding: 8px 10px; }
+.lang--menu a { font-size: 14px; padding: 8px 10px; }
 
 /* ---------- hero: text + picture composition ---------- */
 .eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); line-height: 1.5; }
